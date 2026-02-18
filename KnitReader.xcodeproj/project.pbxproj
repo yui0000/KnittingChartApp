@@ -1,0 +1,558 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C1ABB064C16BC721B7C618E /* ChartDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF63F10A8B257C6E566182 /* ChartDocument.swift */; };
+		0D3C50E4451B93D5DCE881E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 096647B6D86ACC70A9434851 /* Assets.xcassets */; };
+		33A451792E7DE4FED80FEA09 /* UndoStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63A8E33073166433A12043D /* UndoStackTests.swift */; };
+		3A4EBF411CF8D23E27A0EC7A /* ChartViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F232A8DA3262FFAE3E57619 /* ChartViewModelTests.swift */; };
+		51DE50AA6EAA8B8DEC0122FD /* RowMarkerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233E160690EAA44FEE39886 /* RowMarkerOverlayView.swift */; };
+		54D8547EDE1EA88E1B114315 /* ChartRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B041F6BAA717298FDD82F /* ChartRepository.swift */; };
+		5B656429F82F548A87479B8C /* DocumentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD22BDF2C1206E5DDB05C88 /* DocumentPickerView.swift */; };
+		6AB2DF05855865DEDF20B8E4 /* StubChartRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2BD6659DBB6BFAB5020908 /* StubChartRepository.swift */; };
+		7681E5787F583C8C452909BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC2F54475012A65658236A /* ContentView.swift */; };
+		82C7240682FF226D46664357 /* RowMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E846B2F59C2F1B6656821C2F /* RowMarker.swift */; };
+		8B12D38EB84F77570B0C488C /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A0115544CEEFEF010BD24F /* ChartViewModel.swift */; };
+		8D7C86F8433CC530746121C8 /* KnitReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B1C4B4852D6A7117FD43F8 /* KnitReaderApp.swift */; };
+		9FE195407B6D13496226896A /* CoordinateTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A67B2CB810762F3D75A46F /* CoordinateTransformTests.swift */; };
+		BCA73115A3C40B52A8FD805E /* ScrollViewBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB52D73A7CEBB9EA8E04BFD0 /* ScrollViewBridge.swift */; };
+		D14CB6CBBE8284CC534EC42A /* DocumentProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9310DC83F847BB7052ADE /* DocumentProgress.swift */; };
+		E7204D41A567BE98E2B0F95E /* UndoStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921E47E5285E0A692A5971A /* UndoStack.swift */; };
+		EF25C4C26A7B3E88D1A12720 /* CoordinateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E876F3D554AFFC7117D665D /* CoordinateTransform.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8D1F3E899534E27B8FD3D1C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A816F510BCB85E3EECB3EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D21FF47E8A2314C6E6805CB3;
+			remoteInfo = KnitReader;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04B9310DC83F847BB7052ADE /* DocumentProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentProgress.swift; sourceTree = "<group>"; };
+		096647B6D86ACC70A9434851 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2921E47E5285E0A692A5971A /* UndoStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoStack.swift; sourceTree = "<group>"; };
+		2FCC2F54475012A65658236A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3F232A8DA3262FFAE3E57619 /* ChartViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModelTests.swift; sourceTree = "<group>"; };
+		4DD22BDF2C1206E5DDB05C88 /* DocumentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerView.swift; sourceTree = "<group>"; };
+		5ECF63F10A8B257C6E566182 /* ChartDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDocument.swift; sourceTree = "<group>"; };
+		61A67B2CB810762F3D75A46F /* CoordinateTransformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateTransformTests.swift; sourceTree = "<group>"; };
+		67B1C4B4852D6A7117FD43F8 /* KnitReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnitReaderApp.swift; sourceTree = "<group>"; };
+		6E876F3D554AFFC7117D665D /* CoordinateTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateTransform.swift; sourceTree = "<group>"; };
+		746B041F6BAA717298FDD82F /* ChartRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRepository.swift; sourceTree = "<group>"; };
+		7B2BD6659DBB6BFAB5020908 /* StubChartRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubChartRepository.swift; sourceTree = "<group>"; };
+		94DD9A1B077CB4C7CF83CF5C /* KnitReaderTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = KnitReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB52D73A7CEBB9EA8E04BFD0 /* ScrollViewBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewBridge.swift; sourceTree = "<group>"; };
+		B3A0115544CEEFEF010BD24F /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
+		C233E160690EAA44FEE39886 /* RowMarkerOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowMarkerOverlayView.swift; sourceTree = "<group>"; };
+		E846B2F59C2F1B6656821C2F /* RowMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowMarker.swift; sourceTree = "<group>"; };
+		F33286C0509486543969ECD4 /* KnitReader.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KnitReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F63A8E33073166433A12043D /* UndoStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoStackTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0B523D02679F7AD7C7C9F269 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				746B041F6BAA717298FDD82F /* ChartRepository.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		11CA2B4D25ECDA098E2B18E5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04B9310DC83F847BB7052ADE /* DocumentProgress.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		17CA6FE64CD6ACDE6CB4C0BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5ECF63F10A8B257C6E566182 /* ChartDocument.swift */,
+				E846B2F59C2F1B6656821C2F /* RowMarker.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		27119D9C793DACEB7F04F922 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				7B2BD6659DBB6BFAB5020908 /* StubChartRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		511E97CCA4C8987CC58535A9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				17CA6FE64CD6ACDE6CB4C0BE /* Models */,
+				0B523D02679F7AD7C7C9F269 /* Protocols */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		653C8C24B68756A2C0C2A7AF /* KnitReader */ = {
+			isa = PBXGroup;
+			children = (
+				8F2CE1067FB1E70403D92D3F /* App */,
+				9C5FE325D7558BD37280E198 /* Resources */,
+				67B1C4B4852D6A7117FD43F8 /* KnitReaderApp.swift */,
+			);
+			path = KnitReader;
+			sourceTree = "<group>";
+		};
+		6FEDAEA4497D5930F7073C51 = {
+			isa = PBXGroup;
+			children = (
+				653C8C24B68756A2C0C2A7AF /* KnitReader */,
+				84330CA79E11627932DC2F6E /* KnitReaderTests */,
+				75A50A6430BE1FB9DE802F00 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		75A50A6430BE1FB9DE802F00 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F33286C0509486543969ECD4 /* KnitReader.app */,
+				94DD9A1B077CB4C7CF83CF5C /* KnitReaderTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84330CA79E11627932DC2F6E /* KnitReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F232A8DA3262FFAE3E57619 /* ChartViewModelTests.swift */,
+				61A67B2CB810762F3D75A46F /* CoordinateTransformTests.swift */,
+				F63A8E33073166433A12043D /* UndoStackTests.swift */,
+			);
+			path = KnitReaderTests;
+			sourceTree = "<group>";
+		};
+		8F2CE1067FB1E70403D92D3F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E9016F2C4A4BB9E20EC2D3F9 /* Data */,
+				511E97CCA4C8987CC58535A9 /* Domain */,
+				C1C92D0F3421C30593F6BE91 /* Kit */,
+				B0160D82B7675939CD385F5D /* UI */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		9C5FE325D7558BD37280E198 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				096647B6D86ACC70A9434851 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AC35054DC578D3353CE60FE9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2FCC2F54475012A65658236A /* ContentView.swift */,
+				4DD22BDF2C1206E5DDB05C88 /* DocumentPickerView.swift */,
+				C233E160690EAA44FEE39886 /* RowMarkerOverlayView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B0160D82B7675939CD385F5D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C2494EAC2ADC7B6FC2127A5D /* ViewModels */,
+				AC35054DC578D3353CE60FE9 /* Views */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		C1C92D0F3421C30593F6BE91 /* Kit */ = {
+			isa = PBXGroup;
+			children = (
+				6E876F3D554AFFC7117D665D /* CoordinateTransform.swift */,
+				AB52D73A7CEBB9EA8E04BFD0 /* ScrollViewBridge.swift */,
+				2921E47E5285E0A692A5971A /* UndoStack.swift */,
+			);
+			path = Kit;
+			sourceTree = "<group>";
+		};
+		C2494EAC2ADC7B6FC2127A5D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B3A0115544CEEFEF010BD24F /* ChartViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E9016F2C4A4BB9E20EC2D3F9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				11CA2B4D25ECDA098E2B18E5 /* Models */,
+				27119D9C793DACEB7F04F922 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D21FF47E8A2314C6E6805CB3 /* KnitReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D6CB5106EBE1F085FABA7E1 /* Build configuration list for PBXNativeTarget "KnitReader" */;
+			buildPhases = (
+				C837FEB96A142196344F0D16 /* Sources */,
+				72F1C0CC33E8D550469D7207 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KnitReader;
+			packageProductDependencies = (
+			);
+			productName = KnitReader;
+			productReference = F33286C0509486543969ECD4 /* KnitReader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D6DF2A800A81F9A379F069C7 /* KnitReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CF88B4CED909810623472B6 /* Build configuration list for PBXNativeTarget "KnitReaderTests" */;
+			buildPhases = (
+				ADE2C061BB6A357EBBA671A7 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7A2C5A7CD519E6CE7EBC64C4 /* PBXTargetDependency */,
+			);
+			name = KnitReaderTests;
+			packageProductDependencies = (
+			);
+			productName = KnitReaderTests;
+			productReference = 94DD9A1B077CB4C7CF83CF5C /* KnitReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32A816F510BCB85E3EECB3EE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1540;
+			};
+			buildConfigurationList = BA8AD79BE1E39D54FDB5184C /* Build configuration list for PBXProject "KnitReader" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 6FEDAEA4497D5930F7073C51;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D21FF47E8A2314C6E6805CB3 /* KnitReader */,
+				D6DF2A800A81F9A379F069C7 /* KnitReaderTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		72F1C0CC33E8D550469D7207 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D3C50E4451B93D5DCE881E1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ADE2C061BB6A357EBBA671A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A4EBF411CF8D23E27A0EC7A /* ChartViewModelTests.swift in Sources */,
+				9FE195407B6D13496226896A /* CoordinateTransformTests.swift in Sources */,
+				33A451792E7DE4FED80FEA09 /* UndoStackTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C837FEB96A142196344F0D16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C1ABB064C16BC721B7C618E /* ChartDocument.swift in Sources */,
+				54D8547EDE1EA88E1B114315 /* ChartRepository.swift in Sources */,
+				8B12D38EB84F77570B0C488C /* ChartViewModel.swift in Sources */,
+				7681E5787F583C8C452909BD /* ContentView.swift in Sources */,
+				EF25C4C26A7B3E88D1A12720 /* CoordinateTransform.swift in Sources */,
+				5B656429F82F548A87479B8C /* DocumentPickerView.swift in Sources */,
+				D14CB6CBBE8284CC534EC42A /* DocumentProgress.swift in Sources */,
+				8D7C86F8433CC530746121C8 /* KnitReaderApp.swift in Sources */,
+				82C7240682FF226D46664357 /* RowMarker.swift in Sources */,
+				51DE50AA6EAA8B8DEC0122FD /* RowMarkerOverlayView.swift in Sources */,
+				BCA73115A3C40B52A8FD805E /* ScrollViewBridge.swift in Sources */,
+				6AB2DF05855865DEDF20B8E4 /* StubChartRepository.swift in Sources */,
+				E7204D41A567BE98E2B0F95E /* UndoStack.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7A2C5A7CD519E6CE7EBC64C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D21FF47E8A2314C6E6805CB3 /* KnitReader */;
+			targetProxy = 8D1F3E899534E27B8FD3D1C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4156F0A6DBBA6E3855F4F88E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C37EDA39B560FFAAAB813C97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.KnitReader;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CC4DCF40E2D5F456E8C6C8E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.KnitReaderTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KnitReader.app/KnitReader";
+			};
+			name = Release;
+		};
+		E9AF46DF1D0ABE7FC6002DA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.KnitReader;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EA8954C4364259865F6C85F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F006DBD1ABF3EC4F7FE53423 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.KnitReaderTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KnitReader.app/KnitReader";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7D6CB5106EBE1F085FABA7E1 /* Build configuration list for PBXNativeTarget "KnitReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9AF46DF1D0ABE7FC6002DA2 /* Debug */,
+				C37EDA39B560FFAAAB813C97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8CF88B4CED909810623472B6 /* Build configuration list for PBXNativeTarget "KnitReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F006DBD1ABF3EC4F7FE53423 /* Debug */,
+				CC4DCF40E2D5F456E8C6C8E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BA8AD79BE1E39D54FDB5184C /* Build configuration list for PBXProject "KnitReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA8954C4364259865F6C85F9 /* Debug */,
+				4156F0A6DBBA6E3855F4F88E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32A816F510BCB85E3EECB3EE /* Project object */;
+}

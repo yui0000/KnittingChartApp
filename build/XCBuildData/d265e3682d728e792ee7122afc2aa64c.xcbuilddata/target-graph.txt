@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'KnitReaderTests' in project 'KnitReader'
+➜ Explicit dependency on target 'KnitReader' in project 'KnitReader'
+Target 'KnitReader' in project 'KnitReader' (no dependencies)

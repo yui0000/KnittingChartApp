@@ -1,0 +1,14 @@
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Domain/Models/ChartDocument.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Domain/Protocols/ChartRepository.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/UI/ViewModels/ChartViewModel.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/UI/Views/ContentView.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Kit/CoordinateTransform.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/UI/Views/DocumentPickerView.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Data/Models/DocumentProgress.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/KnitReaderApp.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Domain/Models/RowMarker.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/UI/Views/RowMarkerOverlayView.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Kit/ScrollViewBridge.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Data/Repositories/StubChartRepository.swift
+/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Kit/UndoStack.swift
+/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/DerivedSources/GeneratedAssetSymbols.swift

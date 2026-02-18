@@ -1,0 +1,148 @@
+{
+  "" : {
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReader-master.dia",
+    "emit-module-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReader-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReader-master-emit-module.dia",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReader-master.swiftdeps"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Data/Models/DocumentProgress.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentProgress.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentProgress.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentProgress.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentProgress.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentProgress.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentProgress.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentProgress.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentProgress~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Data/Repositories/StubChartRepository.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/StubChartRepository.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/StubChartRepository.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/StubChartRepository.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/StubChartRepository.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/StubChartRepository.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/StubChartRepository.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/StubChartRepository.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/StubChartRepository~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Domain/Models/ChartDocument.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartDocument.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartDocument.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartDocument.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartDocument.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartDocument.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartDocument.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartDocument.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartDocument~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Domain/Models/RowMarker.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarker.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarker.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarker.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarker.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarker.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarker.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarker.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarker~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Domain/Protocols/ChartRepository.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartRepository.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartRepository.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartRepository.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartRepository.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartRepository.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartRepository.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartRepository.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartRepository~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Kit/CoordinateTransform.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/CoordinateTransform.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/CoordinateTransform.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/CoordinateTransform.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/CoordinateTransform.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/CoordinateTransform.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/CoordinateTransform.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/CoordinateTransform.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/CoordinateTransform~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Kit/ScrollViewBridge.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ScrollViewBridge.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ScrollViewBridge.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ScrollViewBridge.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ScrollViewBridge.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ScrollViewBridge.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ScrollViewBridge.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ScrollViewBridge.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ScrollViewBridge~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/Kit/UndoStack.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/UndoStack.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/UndoStack.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/UndoStack.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/UndoStack.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/UndoStack.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/UndoStack.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/UndoStack.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/UndoStack~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/UI/ViewModels/ChartViewModel.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartViewModel.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartViewModel.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartViewModel.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartViewModel.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartViewModel.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartViewModel.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartViewModel.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ChartViewModel~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/UI/Views/ContentView.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/UI/Views/DocumentPickerView.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentPickerView.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentPickerView.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentPickerView.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentPickerView.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentPickerView.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentPickerView.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentPickerView.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/DocumentPickerView~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/App/UI/Views/RowMarkerOverlayView.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarkerOverlayView.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarkerOverlayView.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarkerOverlayView.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarkerOverlayView.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarkerOverlayView.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarkerOverlayView.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarkerOverlayView.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/RowMarkerOverlayView~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReader/KnitReaderApp.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReaderApp.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReaderApp.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReaderApp.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReaderApp.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReaderApp.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReaderApp.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReaderApp.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReader.build/Objects-normal/arm64/KnitReaderApp~partial.swiftmodule"
+  }
+}

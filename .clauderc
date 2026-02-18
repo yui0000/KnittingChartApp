@@ -1,0 +1,44 @@
+project:
+  name: KnitReader
+  description: >
+    SwiftUI（iOS 17+）で PDF/画像の編み図を読み取り、行マーカー・チェック・カウント・独立Undo・手書きメモ・記号検索/ピン留めを提供するアプリ。
+  language: ja-JP
+
+architecture:
+  pattern: [MVVM, Clean]
+  persistence: SwiftData
+  rendering:
+    - PDFKit
+    - UIScrollView bridge with SwiftUI overlay
+    - PencilKit
+  coordinate_system: "document_space_only"  # 保持はドキュメント座標、表示は投影
+
+rules:
+  - すべての座標はドキュメント座標で保持し、描画時にCGAffineTransformで投影する
+  - 破壊的変更を避け、差分パッチで提案する
+  - Viewの肥大化を避け、ロジックはViewModel/UseCaseへ
+  - Undoは「☑」「マーカー」「カウント」を独立管理（相互非連動）
+  - テスト容易性、責務分離、座標変換の一貫性を重視
+  - 例外時はユーザー回復可能なUX（リトライ/再選択）を提示
+
+output_format:
+  require_diff_patch: true
+  include:
+    - "変更ファイル一覧（相対パス）"
+    - "各ファイルの完全な内容"
+    - "実行/テスト手順"
+    - "注意点・制限"
+
+negative_rules:
+  - ファイルの全面削除や大規模リライトの提案をしない
+  - 検証不能な外部依存を勝手に追加しない
+  - 機微情報（鍵/証明書）を埋め込まない
+
+paths:
+  read_first:
+    - "README.md"
+    - "docs/claude-prompts.md"
+    - "App/Domain"
+    - "App/UI"
+    - "App/Kit"
+    - "App/Data"

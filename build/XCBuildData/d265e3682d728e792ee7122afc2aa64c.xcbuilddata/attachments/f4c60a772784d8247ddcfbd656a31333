@@ -1,0 +1,38 @@
+{
+  "" : {
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/KnitReaderTests-master.dia",
+    "emit-module-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/KnitReaderTests-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/KnitReaderTests-master-emit-module.dia",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/KnitReaderTests-master.swiftdeps"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReaderTests/ChartViewModelTests.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/ChartViewModelTests.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/ChartViewModelTests.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/ChartViewModelTests.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/ChartViewModelTests.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/ChartViewModelTests.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/ChartViewModelTests.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/ChartViewModelTests.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/ChartViewModelTests~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReaderTests/CoordinateTransformTests.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/CoordinateTransformTests.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/CoordinateTransformTests.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/CoordinateTransformTests.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/CoordinateTransformTests.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/CoordinateTransformTests.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/CoordinateTransformTests.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/CoordinateTransformTests.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/CoordinateTransformTests~partial.swiftmodule"
+  },
+  "/Users/akibayui/Desktop/KnittingChartApp/KnitReaderTests/UndoStackTests.swift" : {
+    "const-values" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/UndoStackTests.swiftconstvalues",
+    "dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/UndoStackTests.d",
+    "diagnostics" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/UndoStackTests.dia",
+    "index-unit-output-path" : "/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/UndoStackTests.o",
+    "llvm-bc" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/UndoStackTests.bc",
+    "object" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/UndoStackTests.o",
+    "swift-dependencies" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/UndoStackTests.swiftdeps",
+    "swiftmodule" : "/Users/akibayui/Desktop/KnittingChartApp/build/KnitReader.build/Debug-iphoneos/KnitReaderTests.build/Objects-normal/arm64/UndoStackTests~partial.swiftmodule"
+  }
+}

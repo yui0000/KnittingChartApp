@@ -1,0 +1,38 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "editor.rulers": [
+    120
+  ],
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/DerivedData": true,
+    "**/build": true,
+    "**/.swiftpm": true
+  },
+  "search.exclude": {
+    "**/DerivedData": true,
+    "**/build": true,
+    "**/.swiftpm": true
+  },
+  "[swift]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.defaultFoldingRangeProvider": true
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  },
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "terminal.integrated.env.osx": {
+    "LANG": "ja_JP.UTF-8"
+  },
+  "workbench.editor.enablePreview": false,
+  "workbench.startupEditor": "readme",
+  "markdown.preview.doubleClickToSwitchToEditor": true
+}
