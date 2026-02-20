@@ -1,5 +1,6 @@
 import SwiftUI
 import PDFKit
+import PencilKit
 
 /// メイン画面。編み図ビューア + オーバーレイ + ツールバーを構成する。
 struct ContentView: View {
@@ -70,6 +71,12 @@ struct ContentView: View {
                 viewportSize: viewModel.viewportSize,
                 documentWidth: viewModel.chartDocument?.documentSize.width ?? 0
             )
+
+            PencilCanvasBridge(
+                drawingData: $viewModel.drawingData,
+                isPencilMode: viewModel.isPencilMode
+            )
+            .allowsHitTesting(viewModel.isPencilMode)
         }
         .ignoresSafeArea(edges: .bottom)
     }
@@ -92,6 +99,12 @@ struct ContentView: View {
                 viewportSize: viewModel.viewportSize,
                 documentWidth: viewModel.chartDocument?.documentSize.width ?? 0
             )
+
+            PencilCanvasBridge(
+                drawingData: $viewModel.drawingData,
+                isPencilMode: viewModel.isPencilMode
+            )
+            .allowsHitTesting(viewModel.isPencilMode)
         }
         .ignoresSafeArea(edges: .bottom)
     }
@@ -123,6 +136,24 @@ struct ContentView: View {
             Text("\(viewModel.checkCount)")
                 .font(.caption)
                 .monospacedDigit()
+
+            Spacer()
+
+            // 手書きモードトグル
+            Button {
+                viewModel.isPencilMode.toggle()
+            } label: {
+                Image(systemName: "pencil.tip")
+                    .foregroundStyle(viewModel.isPencilMode ? Color.blue : Color.primary)
+            }
+
+            // 手書きクリア
+            Button {
+                viewModel.clearDrawing()
+            } label: {
+                Image(systemName: "trash")
+            }
+            .disabled(viewModel.drawingData == nil)
 
             Spacer()
 

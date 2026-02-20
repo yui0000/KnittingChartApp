@@ -31,6 +31,11 @@ final class ChartViewModel: ObservableObject {
     @Published var rowHeight: CGFloat = 40
     @Published var stepCount: Int = 1
 
+    // MARK: - PencilKit State
+
+    @Published var drawingData: Data? = nil
+    @Published var isPencilMode: Bool = false
+
     // MARK: - Independent Undo Stacks
 
     let rowIndexUndo = UndoStack<Int>(initial: 0)
@@ -133,6 +138,13 @@ final class ChartViewModel: ObservableObject {
     func undoRowIndex() { rowIndexUndo.undo() }
     func undoMarkers() { markersUndo.undo() }
     func undoCheckCount() { checkCountUndo.undo() }
+
+    // MARK: - Drawing Actions
+
+    /// 手書きメモをクリアする。
+    func clearDrawing() {
+        drawingData = nil
+    }
 
     // MARK: - Settings Actions
 
