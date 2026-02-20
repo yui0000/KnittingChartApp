@@ -1,4 +1,5 @@
 import SwiftUI
+import PDFKit
 
 /// メイン画面。編み図ビューア + オーバーレイ + ツールバーを構成する。
 struct ContentView: View {
@@ -8,16 +9,16 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                if let image = viewModel.chartImage {
-                    chartViewerWithOverlay(image: image)
-                } else {
-                    emptyState
-                }
+                chartContent
             }
             .toolbar { toolbarContent }
             .sheet(isPresented: $showDocumentPicker) {
                 DocumentPickerView { url in
-                    viewModel.loadFromURL(url)
+                    if url.pathExtension.lowercased() == "pdf" {
+                        viewModel.loadPDFFromURL(url)
+                    } else {
+                        viewModel.loadFromURL(url)
+                    }
                 }
             }
             .navigationTitle("KnitReader")
@@ -31,13 +32,46 @@ struct ContentView: View {
     // MARK: - Subviews
 
     @ViewBuilder
-    private func chartViewerWithOverlay(image: UIImage) -> some View {
+    private var chartContent: some View {
+        if let pdfDoc = viewModel.pdfDocument {
+            pdfViewerWithOverlay(pdfDocument: pdfDoc)
+        } else if let image = viewModel.chartImage {
+            imageViewerWithOverlay(image: image)
+        } else {
+            emptyState
+        }
+    }
+
+    @ViewBuilder
+    private func imageViewerWithOverlay(image: UIImage) -> some View {
         ZStack {
             ScrollViewBridge(
                 image: image,
                 zoomScale: $viewModel.zoomScale,
                 contentOffset: $viewModel.contentOffset,
                 viewportSize: $viewModel.viewportSize
+            )
+
+            RowMarkerOverlayView(
+                markers: viewModel.markers,
+                currentRowIndex: viewModel.currentRowIndex,
+                transform: viewModel.transform,
+                viewportSize: viewModel.viewportSize,
+                documentWidth: viewModel.chartDocument?.documentSize.width ?? 0
+            )
+        }
+        .ignoresSafeArea(edges: .bottom)
+    }
+
+    @ViewBuilder
+    private func pdfViewerWithOverlay(pdfDocument: PDFDocument) -> some View {
+        ZStack {
+            PDFViewBridge(
+                document: pdfDocument,
+                scaleFactor: $viewModel.zoomScale,
+                contentOffset: $viewModel.contentOffset,
+                viewportSize: $viewModel.viewportSize,
+                pageHeight: $viewModel.pageHeight
             )
 
             RowMarkerOverlayView(

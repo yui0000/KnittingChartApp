@@ -1,22 +1,29 @@
 import SwiftUI
 import Combine
+import PDFKit
 
 /// 編み図ビューアの中央 ViewModel。
 ///
 /// 3つの独立 Undo スタック（行インデックス / マーカー / チェックカウント）を管理し、
-/// 座標変換パラメータを ScrollViewBridge から受け取る。
+/// 座標変換パラメータを ScrollViewBridge / PDFViewBridge から受け取る。
 @MainActor
 final class ChartViewModel: ObservableObject {
     // MARK: - Document State
 
     @Published var chartDocument: ChartDocument?
     @Published var chartImage: UIImage?
+    @Published var pdfDocument: PDFDocument?
 
-    // MARK: - Scroll / Zoom State（ScrollViewBridge から Binding で更新）
+    // MARK: - Scroll / Zoom State（Bridge から Binding で更新）
 
     @Published var zoomScale: CGFloat = 1.0
     @Published var contentOffset: CGPoint = .zero
     @Published var viewportSize: CGSize = .zero
+
+    // MARK: - PDF State
+
+    /// PDF ページ高さ（ポイント）。画像のときは 0。PDFViewBridge が更新する。
+    @Published var pageHeight: CGFloat = 0
 
     // MARK: - Row Configuration
 
@@ -33,7 +40,11 @@ final class ChartViewModel: ObservableObject {
     // MARK: - Computed
 
     var transform: CoordinateTransform {
-        CoordinateTransform(zoomScale: zoomScale, contentOffset: contentOffset)
+        CoordinateTransform(
+            zoomScale: zoomScale,
+            contentOffset: contentOffset,
+            pageHeight: pageHeight
+        )
     }
 
     var currentRowIndex: Int { rowIndexUndo.current }
@@ -53,6 +64,8 @@ final class ChartViewModel: ObservableObject {
         )
         chartDocument = doc
         chartImage = img
+        pdfDocument = nil
+        pageHeight = 0
         seedDummyMarkers(documentHeight: img.size.height)
     }
 
@@ -70,7 +83,32 @@ final class ChartViewModel: ObservableObject {
         )
         chartDocument = doc
         chartImage = img
+        pdfDocument = nil
+        pageHeight = 0
         seedDummyMarkers(documentHeight: img.size.height)
+    }
+
+    /// PDF URL から 1 ページ目を読み込む（ドキュメントピッカー用）。
+    func loadPDFFromURL(_ url: URL) {
+        guard url.startAccessingSecurityScopedResource() else { return }
+        defer { url.stopAccessingSecurityScopedResource() }
+        guard let pdf = PDFDocument(url: url),
+              let firstPage = pdf.page(at: 0) else { return }
+
+        let pageBounds = firstPage.bounds(for: .mediaBox)
+        let docSize = pageBounds.size
+
+        let doc = ChartDocument(
+            id: UUID(),
+            title: url.lastPathComponent,
+            documentSize: docSize,
+            source: .pdfURL(url)
+        )
+        chartDocument = doc
+        pdfDocument = pdf
+        chartImage = nil
+        pageHeight = docSize.height
+        seedDummyMarkers(documentHeight: docSize.height)
     }
 
     // MARK: - Row Actions

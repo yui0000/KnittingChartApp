@@ -12,5 +12,11 @@ struct ChartDocument: Equatable, Sendable {
     enum Source: Equatable, Sendable {
         case bundled(name: String)
         case fileURL(URL)
+        case pdfURL(URL)
+    }
+
+    var isPDF: Bool {
+        if case .pdfURL = source { return true }
+        return false
     }
 }
