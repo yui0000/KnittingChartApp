@@ -134,6 +134,14 @@ final class ChartViewModel: ObservableObject {
     func undoMarkers() { markersUndo.undo() }
     func undoCheckCount() { checkCountUndo.undo() }
 
+    // MARK: - Settings Actions
+
+    /// 現在の startY / rowHeight / stepCount でマーカーを再生成し、Undo履歴をリセットする。
+    func applyRowSettings() {
+        guard let doc = chartDocument else { return }
+        seedDummyMarkers(documentHeight: doc.documentSize.height)
+    }
+
     // MARK: - Private
 
     private func seedDummyMarkers(documentHeight: CGFloat) {

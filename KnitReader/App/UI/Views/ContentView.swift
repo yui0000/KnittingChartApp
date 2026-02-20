@@ -5,6 +5,7 @@ import PDFKit
 struct ContentView: View {
     @StateObject private var viewModel = ChartViewModel()
     @State private var showDocumentPicker = false
+    @State private var showRowSettings = false
 
     var body: some View {
         NavigationStack {
@@ -12,6 +13,16 @@ struct ContentView: View {
                 chartContent
             }
             .toolbar { toolbarContent }
+            .sheet(isPresented: $showRowSettings) {
+                RowSettingsView(
+                    startY: $viewModel.startY,
+                    rowHeight: $viewModel.rowHeight,
+                    stepCount: $viewModel.stepCount
+                ) {
+                    viewModel.applyRowSettings()
+                    showRowSettings = false
+                }
+            }
             .sheet(isPresented: $showDocumentPicker) {
                 DocumentPickerView { url in
                     if url.pathExtension.lowercased() == "pdf" {
@@ -142,6 +153,15 @@ struct ContentView: View {
                 Image(systemName: "plus.circle.fill")
                     .font(.title2)
             }
+        }
+
+        ToolbarItem(placement: .topBarLeading) {
+            Button {
+                showRowSettings = true
+            } label: {
+                Image(systemName: "slider.horizontal.3")
+            }
+            .disabled(viewModel.chartDocument == nil)
         }
 
         ToolbarItem(placement: .topBarTrailing) {
