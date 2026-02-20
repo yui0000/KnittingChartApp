@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 @main
 struct KnitReaderApp: App {
@@ -6,5 +7,6 @@ struct KnitReaderApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: DocumentProgress.self)
     }
 }

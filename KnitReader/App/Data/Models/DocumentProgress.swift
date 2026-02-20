@@ -2,7 +2,6 @@ import Foundation
 import SwiftData
 
 /// 編み図の進捗を永続化する SwiftData モデル。
-/// Step 1 では定義のみ。ModelContainer の注入・保存呼び出しは Step 6 で実装。
 @Model
 final class DocumentProgress {
     @Attribute(.unique) var documentID: UUID
@@ -11,6 +10,12 @@ final class DocumentProgress {
     var markerCheckedFlags: [Bool]
     var checkCount: Int
     var lastModified: Date
+    /// セキュアブックマークデータ（ファイル移動追跡用）
+    var bookmarkData: Data?
+    /// PencilKit 手書きデータ（PKDrawing.dataRepresentation()）
+    var drawingData: Data?
+    /// ファイルの絶対 URL 文字列（1:1 紐付けの検索キー。バンドルサンプルは nil）
+    var fileURLString: String?
 
     init(
         documentID: UUID,
@@ -18,7 +23,10 @@ final class DocumentProgress {
         markerYPositions: [Double] = [],
         markerCheckedFlags: [Bool] = [],
         checkCount: Int = 0,
-        lastModified: Date = .now
+        lastModified: Date = .now,
+        bookmarkData: Data? = nil,
+        drawingData: Data? = nil,
+        fileURLString: String? = nil
     ) {
         self.documentID = documentID
         self.currentRowIndex = currentRowIndex
@@ -26,5 +34,8 @@ final class DocumentProgress {
         self.markerCheckedFlags = markerCheckedFlags
         self.checkCount = checkCount
         self.lastModified = lastModified
+        self.bookmarkData = bookmarkData
+        self.drawingData = drawingData
+        self.fileURLString = fileURLString
     }
 }

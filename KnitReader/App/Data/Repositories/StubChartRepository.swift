@@ -1,6 +1,6 @@
 import Foundation
 
-/// インメモリの Stub リポジトリ。MVP では永続化せずメモリ上で保持する。
+/// インメモリの Stub リポジトリ。テスト・プレビュー用。
 final class StubChartRepository: ChartRepository, @unchecked Sendable {
     private var storage: [UUID: DocumentProgressDTO] = [:]
 
@@ -10,5 +10,9 @@ final class StubChartRepository: ChartRepository, @unchecked Sendable {
 
     func saveProgress(_ progress: DocumentProgressDTO) async throws {
         storage[progress.documentID] = progress
+    }
+
+    func findProgress(byFileURL fileURLString: String) async throws -> DocumentProgressDTO? {
+        storage.values.first { $0.fileURLString == fileURLString }
     }
 }

@@ -1,12 +1,14 @@
 import SwiftUI
 import PDFKit
 import PencilKit
+import SwiftData
 
 /// メイン画面。編み図ビューア + オーバーレイ + ツールバーを構成する。
 struct ContentView: View {
     @StateObject private var viewModel = ChartViewModel()
     @State private var showDocumentPicker = false
     @State private var showRowSettings = false
+    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         NavigationStack {
@@ -36,7 +38,10 @@ struct ContentView: View {
             .navigationTitle("KnitReader")
             .navigationBarTitleDisplayMode(.inline)
         }
-        .onAppear {
+        .task {
+            viewModel.configure(
+                repository: SwiftDataChartRepository(modelContext: modelContext)
+            )
             viewModel.loadBundledSample()
         }
     }
