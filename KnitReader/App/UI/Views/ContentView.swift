@@ -8,6 +8,7 @@ struct ContentView: View {
     @StateObject private var viewModel = ChartViewModel()
     @State private var showDocumentPicker = false
     @State private var showRowSettings = false
+    @State private var showHelp = false
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {
@@ -34,6 +35,20 @@ struct ContentView: View {
                         viewModel.loadFromURL(url)
                     }
                 }
+            }
+            .sheet(isPresented: $showHelp) {
+                HelpView()
+            }
+            .alert(
+                "読み込みエラー",
+                isPresented: Binding(
+                    get: { viewModel.loadError != nil },
+                    set: { if !$0 { viewModel.loadError = nil } }
+                )
+            ) {
+                Button("OK", role: .cancel) { viewModel.loadError = nil }
+            } message: {
+                Text(viewModel.loadError ?? "")
             }
             .navigationTitle("KnitReader")
             .navigationBarTitleDisplayMode(.inline)
@@ -134,6 +149,7 @@ struct ContentView: View {
             Text("行 \(viewModel.currentRowIndex + 1) / \(viewModel.markers.count)")
                 .font(.caption)
                 .monospacedDigit()
+                .accessibilityLabel("現在 \(viewModel.currentRowIndex + 1) 行目、全 \(viewModel.markers.count) 行")
 
             Spacer()
 
@@ -141,6 +157,7 @@ struct ContentView: View {
             Text("\(viewModel.checkCount)")
                 .font(.caption)
                 .monospacedDigit()
+                .accessibilityLabel("チェック数 \(viewModel.checkCount)")
 
             Spacer()
 
@@ -149,8 +166,10 @@ struct ContentView: View {
                 viewModel.isPencilMode.toggle()
             } label: {
                 Image(systemName: "pencil.tip")
-                    .foregroundStyle(viewModel.isPencilMode ? Color.blue : Color.primary)
+                    .foregroundStyle(viewModel.isPencilMode ? Color.accentColor : Color.primary)
             }
+            .accessibilityLabel(viewModel.isPencilMode ? "手書きモードをオフにする" : "手書きモードをオンにする")
+            .keyboardShortcut("p", modifiers: .command)
 
             // 手書きクリア
             Button {
@@ -159,6 +178,7 @@ struct ContentView: View {
                 Image(systemName: "trash")
             }
             .disabled(viewModel.drawingData == nil)
+            .accessibilityLabel("手書きメモをクリア")
 
             Spacer()
 
@@ -181,6 +201,7 @@ struct ContentView: View {
             } label: {
                 Image(systemName: "arrow.uturn.backward")
             }
+            .accessibilityLabel("元に戻す")
 
             // + ボタン（行を進める）
             Button {
@@ -189,6 +210,9 @@ struct ContentView: View {
                 Image(systemName: "plus.circle.fill")
                     .font(.title2)
             }
+            .accessibilityLabel("次の行に進む")
+            .accessibilityHint("現在行をチェック済みにして次の行へ進みます")
+            .keyboardShortcut(.return, modifiers: [])
         }
 
         ToolbarItem(placement: .topBarLeading) {
@@ -198,13 +222,24 @@ struct ContentView: View {
                 Image(systemName: "slider.horizontal.3")
             }
             .disabled(viewModel.chartDocument == nil)
+            .accessibilityLabel("行の設定")
         }
 
         ToolbarItem(placement: .topBarTrailing) {
-            Button {
-                showDocumentPicker = true
-            } label: {
-                Image(systemName: "folder.badge.plus")
+            HStack {
+                Button {
+                    showHelp = true
+                } label: {
+                    Image(systemName: "questionmark.circle")
+                }
+                .accessibilityLabel("ヘルプ")
+
+                Button {
+                    showDocumentPicker = true
+                } label: {
+                    Image(systemName: "folder.badge.plus")
+                }
+                .accessibilityLabel("ファイルを開く")
             }
         }
     }

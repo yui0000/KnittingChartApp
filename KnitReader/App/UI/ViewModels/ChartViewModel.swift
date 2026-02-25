@@ -37,6 +37,11 @@ final class ChartViewModel: ObservableObject {
     @Published var drawingData: Data? = nil
     @Published var isPencilMode: Bool = false
 
+    // MARK: - Error State
+
+    /// ファイル読み込み失敗時のエラーメッセージ。nil のときはエラーなし。
+    @Published var loadError: String? = nil
+
     // MARK: - Independent Undo Stacks
 
     let rowIndexUndo = UndoStack<Int>(initial: 0)
@@ -99,10 +104,16 @@ final class ChartViewModel: ObservableObject {
     /// ファイル URL から画像を読み込む（ドキュメントピッカー用）。
     func loadFromURL(_ url: URL) {
         let urlString = url.absoluteString
-        guard url.startAccessingSecurityScopedResource() else { return }
+        guard url.startAccessingSecurityScopedResource() else {
+            loadError = "ファイルへのアクセス権限がありません。"
+            return
+        }
         defer { url.stopAccessingSecurityScopedResource() }
         guard let data = try? Data(contentsOf: url),
-              let img = UIImage(data: data) else { return }
+              let img = UIImage(data: data) else {
+            loadError = "画像を読み込めませんでした。\(url.lastPathComponent) が対応フォーマットか確認してください。"
+            return
+        }
 
         let bookmarkData = try? url.bookmarkData()
 
@@ -135,10 +146,16 @@ final class ChartViewModel: ObservableObject {
     /// PDF URL から 1 ページ目を読み込む（ドキュメントピッカー用）。
     func loadPDFFromURL(_ url: URL) {
         let urlString = url.absoluteString
-        guard url.startAccessingSecurityScopedResource() else { return }
+        guard url.startAccessingSecurityScopedResource() else {
+            loadError = "ファイルへのアクセス権限がありません。"
+            return
+        }
         defer { url.stopAccessingSecurityScopedResource() }
         guard let pdf = PDFDocument(url: url),
-              let firstPage = pdf.page(at: 0) else { return }
+              let firstPage = pdf.page(at: 0) else {
+            loadError = "PDF を読み込めませんでした。\(url.lastPathComponent) が正しい PDF ファイルか確認してください。"
+            return
+        }
 
         let pageBounds = firstPage.bounds(for: .mediaBox)
         let docSize = pageBounds.size
