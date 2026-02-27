@@ -190,12 +190,12 @@ final class ChartViewModel: ObservableObject {
 
     /// 現在行を 1 行進める。現在行をチェック済みにし、チェックカウントを +1 する。
     func advanceRow() {
-        guard currentRowIndex < markers.count else { return }
-        let newIndex = currentRowIndex + 1
-        rowIndexUndo.push(newIndex)
+        let oldIndex = currentRowIndex  // push 前に確定しておく
+        guard oldIndex < markers.count else { return }
+        rowIndexUndo.push(oldIndex + 1)
 
         var updatedMarkers = markers
-        updatedMarkers[currentRowIndex].isChecked = true
+        updatedMarkers[oldIndex].isChecked = true
         markersUndo.push(updatedMarkers)
 
         checkCountUndo.push(checkCount + 1)
