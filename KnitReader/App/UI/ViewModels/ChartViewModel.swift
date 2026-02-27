@@ -192,6 +192,7 @@ final class ChartViewModel: ObservableObject {
     func advanceRow() {
         let oldIndex = currentRowIndex  // push 前に確定しておく
         guard oldIndex < markers.count else { return }
+        objectWillChange.send()
         rowIndexUndo.push(oldIndex + 1)
 
         var updatedMarkers = markers
@@ -205,6 +206,7 @@ final class ChartViewModel: ObservableObject {
     /// チェックカウントを 1 減らす（行位置は変更しない）。
     func decrementCheckCount() {
         guard checkCount > 0 else { return }
+        objectWillChange.send()
         checkCountUndo.push(checkCount - 1)
         saveProgress()
     }
@@ -214,6 +216,7 @@ final class ChartViewModel: ObservableObject {
     /// - チェックを入れる場合: そのマーカーまでをすべてチェック済みにし、行インデックスを次行へ進める。
     func toggleMarker(at index: Int) {
         guard index >= 0 && index < markers.count else { return }
+        objectWillChange.send()
         var updatedMarkers = markers
         if updatedMarkers[index].isChecked {
             for i in index..<updatedMarkers.count {
@@ -233,9 +236,9 @@ final class ChartViewModel: ObservableObject {
 
     // MARK: - Independent Undo
 
-    func undoRowIndex() { rowIndexUndo.undo(); saveProgress() }
-    func undoMarkers() { markersUndo.undo(); saveProgress() }
-    func undoCheckCount() { checkCountUndo.undo(); saveProgress() }
+    func undoRowIndex() { objectWillChange.send(); rowIndexUndo.undo(); saveProgress() }
+    func undoMarkers() { objectWillChange.send(); markersUndo.undo(); saveProgress() }
+    func undoCheckCount() { objectWillChange.send(); checkCountUndo.undo(); saveProgress() }
 
     // MARK: - Drawing Actions
 
