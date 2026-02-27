@@ -188,19 +188,46 @@ final class ChartViewModel: ObservableObject {
 
     // MARK: - Row Actions
 
-    /// 現在行を stepCount 分進める。行インデックス・マーカー・チェックカウントをそれぞれ更新。
+    /// 現在行を 1 行進める。現在行をチェック済みにし、チェックカウントを +1 する。
     func advanceRow() {
-        let newIndex = currentRowIndex + stepCount
+        guard currentRowIndex < markers.count else { return }
+        let newIndex = currentRowIndex + 1
         rowIndexUndo.push(newIndex)
 
         var updatedMarkers = markers
-        let prevIndex = newIndex - stepCount
-        if prevIndex >= 0 && prevIndex < updatedMarkers.count {
-            updatedMarkers[prevIndex].isChecked = true
-        }
+        updatedMarkers[currentRowIndex].isChecked = true
         markersUndo.push(updatedMarkers)
 
         checkCountUndo.push(checkCount + 1)
+        saveProgress()
+    }
+
+    /// チェックカウントを 1 減らす（行位置は変更しない）。
+    func decrementCheckCount() {
+        guard checkCount > 0 else { return }
+        checkCountUndo.push(checkCount - 1)
+        saveProgress()
+    }
+
+    /// 指定インデックスのマーカーをトグルし、行インデックスを更新する。
+    /// - チェックを外す場合: そのマーカー以降をすべて未チェックにし、行インデックスをそのインデックスに戻す。
+    /// - チェックを入れる場合: そのマーカーまでをすべてチェック済みにし、行インデックスを次行へ進める。
+    func toggleMarker(at index: Int) {
+        guard index >= 0 && index < markers.count else { return }
+        var updatedMarkers = markers
+        if updatedMarkers[index].isChecked {
+            for i in index..<updatedMarkers.count {
+                updatedMarkers[i].isChecked = false
+            }
+            markersUndo.push(updatedMarkers)
+            rowIndexUndo.push(index)
+        } else {
+            for i in 0...index {
+                updatedMarkers[i].isChecked = true
+            }
+            markersUndo.push(updatedMarkers)
+            rowIndexUndo.push(min(index + 1, updatedMarkers.count))
+        }
         saveProgress()
     }
 

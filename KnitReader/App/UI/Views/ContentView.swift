@@ -79,7 +79,9 @@ struct ContentView: View {
                 currentRowIndex: viewModel.currentRowIndex,
                 transform: viewModel.transform,
                 viewportSize: viewModel.viewportSize,
-                documentWidth: viewModel.chartDocument?.documentSize.width ?? 0
+                documentWidth: viewModel.chartDocument?.documentSize.width ?? 0,
+                rowHeight: viewModel.rowHeight,
+                onToggleMarker: { viewModel.toggleMarker(at: $0) }
             )
 
             if isRowSettingsMode {
@@ -115,7 +117,9 @@ struct ContentView: View {
                 currentRowIndex: viewModel.currentRowIndex,
                 transform: viewModel.transform,
                 viewportSize: viewModel.viewportSize,
-                documentWidth: viewModel.chartDocument?.documentSize.width ?? 0
+                documentWidth: viewModel.chartDocument?.documentSize.width ?? 0,
+                rowHeight: viewModel.rowHeight,
+                onToggleMarker: { viewModel.toggleMarker(at: $0) }
             )
 
             if isRowSettingsMode {
@@ -189,26 +193,16 @@ struct ContentView: View {
 
             Spacer()
 
-            // Undo メニュー
-            Menu {
-                Button("行を戻す") {
-                    viewModel.undoRowIndex()
-                }
-                .disabled(!viewModel.rowIndexUndo.canUndo)
-
-                Button("マーカーを戻す") {
-                    viewModel.undoMarkers()
-                }
-                .disabled(!viewModel.markersUndo.canUndo)
-
-                Button("カウントを戻す") {
-                    viewModel.undoCheckCount()
-                }
-                .disabled(!viewModel.checkCountUndo.canUndo)
+            // - ボタン（カウントを -1）
+            Button {
+                viewModel.decrementCheckCount()
             } label: {
-                Image(systemName: "arrow.uturn.backward")
+                Image(systemName: "minus.circle.fill")
+                    .font(.title2)
             }
-            .accessibilityLabel("元に戻す")
+            .disabled(viewModel.checkCount == 0 || isRowSettingsMode)
+            .accessibilityLabel("カウントを減らす")
+            .accessibilityHint("カウントを1減らします")
 
             // + ボタン（行を進める）
             Button {
