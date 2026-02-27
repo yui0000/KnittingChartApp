@@ -48,11 +48,14 @@ struct RowMarkerOverlayView: View {
         let uncheckedSym = context.resolveSymbol(id: 1)
         let lineStyle = StrokeStyle(lineWidth: 1.5)
         let rowHeightInView = max(8, rowHeight * transform.zoomScale)
+        // 行の進行方向（PDF: 上向き、画像: 下向き）
+        let step: CGFloat = transform.pageHeight > 0 ? -rowHeightInView : rowHeightInView
+        // チェックボックスは行線から行帯の中心へオフセット
+        let checkboxOffsetY = step / 2
 
         // 現在行のバンドハイライト
         if currentRowIndex < markers.count {
             let y0 = transform.documentToViewY(markers[currentRowIndex].yPosition)
-            let step: CGFloat = transform.pageHeight > 0 ? -rowHeightInView : rowHeightInView
             let bandY = min(y0, y0 + step)
             let bandH = abs(step)
             if bandH > 0 {
@@ -75,26 +78,31 @@ struct RowMarkerOverlayView: View {
             path.addLine(to: CGPoint(x: size.width, y: viewY))
             context.stroke(path, with: .color(.yellow.opacity(opacity)), style: lineStyle)
 
-            // チェックボックス
+            // チェックボックス（行幅の中心に配置）
             let sym = marker.isChecked ? checkedSym : uncheckedSym
             if let sym {
-                context.draw(sym, at: CGPoint(x: checkboxCenterX, y: viewY), anchor: .center)
+                context.draw(sym, at: CGPoint(x: checkboxCenterX, y: viewY + checkboxOffsetY), anchor: .center)
             }
         }
     }
 
     private func handleCheckboxTap(at y: CGFloat) {
+        let rowHeightInView = max(8, rowHeight * transform.zoomScale)
+        let step: CGFloat = transform.pageHeight > 0 ? -rowHeightInView : rowHeightInView
+
         var closestIndex: Int?
         var minDist: CGFloat = .infinity
         for (i, marker) in markers.enumerated() {
             let viewY = transform.documentToViewY(marker.yPosition)
-            let d = abs(viewY - y)
+            // 行線ではなくバンド中心との距離で判定
+            let bandCenterY = viewY + step / 2
+            let d = abs(bandCenterY - y)
             if d < minDist {
                 minDist = d
                 closestIndex = i
             }
         }
-        let threshold = max(20, rowHeight * transform.zoomScale / 2)
+        let threshold = max(20, rowHeightInView / 2)
         if let idx = closestIndex, minDist <= threshold {
             onToggleMarker?(idx)
         }

@@ -155,11 +155,11 @@ struct ContentView: View {
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItemGroup(placement: .bottomBar) {
-            // 行カウンター
-            Text("行 \(viewModel.currentRowIndex + 1) / \(viewModel.markers.count)")
+            // 行カウンター（下から数えた行番号）
+            Text("行 \(viewModel.markers.count - viewModel.currentRowIndex) / \(viewModel.markers.count)")
                 .font(.caption)
                 .monospacedDigit()
-                .accessibilityLabel("現在 \(viewModel.currentRowIndex + 1) 行目、全 \(viewModel.markers.count) 行")
+                .accessibilityLabel("現在 \(viewModel.markers.count - viewModel.currentRowIndex) 行目、全 \(viewModel.markers.count) 行")
 
             Spacer()
 

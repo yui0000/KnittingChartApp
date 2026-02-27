@@ -188,16 +188,19 @@ final class ChartViewModel: ObservableObject {
 
     // MARK: - Row Actions
 
-    /// 現在行を 1 行進める。現在行をチェック済みにし、チェックカウントを +1 する。
+    /// 現在行を 1 行進める（上方向）。現在行をチェック済みにし、チェックカウントを +1 する。
+    /// マーカーは上から下（インデックス増加）の順に並ぶため、「上へ進む」はインデックスを減らす操作。
     func advanceRow() {
         let oldIndex = currentRowIndex  // push 前に確定しておく
-        guard oldIndex < markers.count else { return }
+        guard oldIndex >= 0 && oldIndex < markers.count else { return }
         objectWillChange.send()
-        rowIndexUndo.push(oldIndex + 1)
 
         var updatedMarkers = markers
         updatedMarkers[oldIndex].isChecked = true
         markersUndo.push(updatedMarkers)
+
+        // 上方向へ移動（インデックス減少）
+        rowIndexUndo.push(max(0, oldIndex - 1))
 
         checkCountUndo.push(checkCount + 1)
         saveProgress()
@@ -211,26 +214,14 @@ final class ChartViewModel: ObservableObject {
         saveProgress()
     }
 
-    /// 指定インデックスのマーカーをトグルし、行インデックスを更新する。
-    /// - チェックを外す場合: そのマーカー以降をすべて未チェックにし、行インデックスをそのインデックスに戻す。
-    /// - チェックを入れる場合: そのマーカーまでをすべてチェック済みにし、行インデックスを次行へ進める。
+    /// 指定インデックスのマーカーの isChecked をトグルする。
+    /// 行番号（currentRowIndex）は変更しない。
     func toggleMarker(at index: Int) {
         guard index >= 0 && index < markers.count else { return }
         objectWillChange.send()
         var updatedMarkers = markers
-        if updatedMarkers[index].isChecked {
-            for i in index..<updatedMarkers.count {
-                updatedMarkers[i].isChecked = false
-            }
-            markersUndo.push(updatedMarkers)
-            rowIndexUndo.push(index)
-        } else {
-            for i in 0...index {
-                updatedMarkers[i].isChecked = true
-            }
-            markersUndo.push(updatedMarkers)
-            rowIndexUndo.push(min(index + 1, updatedMarkers.count))
-        }
+        updatedMarkers[index].isChecked.toggle()
+        markersUndo.push(updatedMarkers)
         saveProgress()
     }
 
@@ -292,7 +283,8 @@ final class ChartViewModel: ObservableObject {
             y += rowHeight
         }
         markersUndo.reset(to: markers)
-        rowIndexUndo.reset(to: 0)
+        // 編み物は下（末尾）から読み始めるため、最後のインデックスを初期位置にする
+        rowIndexUndo.reset(to: max(0, markers.count - 1))
         checkCountUndo.reset(to: 0)
     }
 }
