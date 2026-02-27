@@ -7,7 +7,7 @@ import SwiftData
 struct ContentView: View {
     @StateObject private var viewModel = ChartViewModel()
     @State private var showDocumentPicker = false
-    @State private var showRowSettings = false
+    @State private var isRowSettingsMode = false
     @State private var showHelp = false
     @Environment(\.modelContext) private var modelContext
 
@@ -17,16 +17,6 @@ struct ContentView: View {
                 chartContent
             }
             .toolbar { toolbarContent }
-            .sheet(isPresented: $showRowSettings) {
-                RowSettingsView(
-                    startY: $viewModel.startY,
-                    rowHeight: $viewModel.rowHeight,
-                    stepCount: $viewModel.stepCount
-                ) {
-                    viewModel.applyRowSettings()
-                    showRowSettings = false
-                }
-            }
             .sheet(isPresented: $showDocumentPicker) {
                 DocumentPickerView { url in
                     if url.pathExtension.lowercased() == "pdf" {
@@ -92,6 +82,14 @@ struct ContentView: View {
                 documentWidth: viewModel.chartDocument?.documentSize.width ?? 0
             )
 
+            if isRowSettingsMode {
+                RowSettingsOverlayView(
+                    startY: $viewModel.startY,
+                    rowHeight: $viewModel.rowHeight,
+                    transform: viewModel.transform
+                )
+            }
+
             PencilCanvasBridge(
                 drawingData: $viewModel.drawingData,
                 isPencilMode: viewModel.isPencilMode
@@ -119,6 +117,14 @@ struct ContentView: View {
                 viewportSize: viewModel.viewportSize,
                 documentWidth: viewModel.chartDocument?.documentSize.width ?? 0
             )
+
+            if isRowSettingsMode {
+                RowSettingsOverlayView(
+                    startY: $viewModel.startY,
+                    rowHeight: $viewModel.rowHeight,
+                    transform: viewModel.transform
+                )
+            }
 
             PencilCanvasBridge(
                 drawingData: $viewModel.drawingData,
@@ -168,6 +174,7 @@ struct ContentView: View {
                 Image(systemName: "pencil.tip")
                     .foregroundStyle(viewModel.isPencilMode ? Color.accentColor : Color.primary)
             }
+            .disabled(isRowSettingsMode)
             .accessibilityLabel(viewModel.isPencilMode ? "手書きモードをオフにする" : "手書きモードをオンにする")
             .keyboardShortcut("p", modifiers: .command)
 
@@ -177,7 +184,7 @@ struct ContentView: View {
             } label: {
                 Image(systemName: "trash")
             }
-            .disabled(viewModel.drawingData == nil)
+            .disabled(viewModel.drawingData == nil || isRowSettingsMode)
             .accessibilityLabel("手書きメモをクリア")
 
             Spacer()
@@ -210,36 +217,54 @@ struct ContentView: View {
                 Image(systemName: "plus.circle.fill")
                     .font(.title2)
             }
+            .disabled(isRowSettingsMode)
             .accessibilityLabel("次の行に進む")
             .accessibilityHint("現在行をチェック済みにして次の行へ進みます")
             .keyboardShortcut(.return, modifiers: [])
         }
 
         ToolbarItem(placement: .topBarLeading) {
-            Button {
-                showRowSettings = true
-            } label: {
-                Image(systemName: "slider.horizontal.3")
+            if isRowSettingsMode {
+                Button("完了") {
+                    viewModel.applyRowSettings()
+                    isRowSettingsMode = false
+                }
+                .fontWeight(.semibold)
+                .accessibilityLabel("行設定を確定する")
+            } else {
+                Button {
+                    isRowSettingsMode = true
+                } label: {
+                    Image(systemName: "slider.horizontal.3")
+                }
+                .disabled(viewModel.chartDocument == nil || viewModel.isPencilMode)
+                .accessibilityLabel("行の設定")
             }
-            .disabled(viewModel.chartDocument == nil)
-            .accessibilityLabel("行の設定")
         }
 
         ToolbarItem(placement: .topBarTrailing) {
-            HStack {
-                Button {
-                    showHelp = true
-                } label: {
-                    Image(systemName: "questionmark.circle")
+            if viewModel.isPencilMode {
+                Button("完了") {
+                    viewModel.isPencilMode = false
                 }
-                .accessibilityLabel("ヘルプ")
+                .fontWeight(.semibold)
+                .accessibilityLabel("手書きモードを終了する")
+            } else {
+                HStack {
+                    Button {
+                        showHelp = true
+                    } label: {
+                        Image(systemName: "questionmark.circle")
+                    }
+                    .accessibilityLabel("ヘルプ")
 
-                Button {
-                    showDocumentPicker = true
-                } label: {
-                    Image(systemName: "folder.badge.plus")
+                    Button {
+                        showDocumentPicker = true
+                    } label: {
+                        Image(systemName: "folder.badge.plus")
+                    }
+                    .accessibilityLabel("ファイルを開く")
                 }
-                .accessibilityLabel("ファイルを開く")
             }
         }
     }

@@ -28,7 +28,7 @@ struct RowSettingsView: View {
             Form {
                 Section {
                     LabeledContent("始点 Y") {
-                        TextField("例: 100", value: $startY, format: .number)
+                        TextField("例: 100", value: Binding(get: { Double(startY) }, set: { startY = CGFloat($0) }), format: .number)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                             .focused($focusedField, equals: .startY)
@@ -40,7 +40,7 @@ struct RowSettingsView: View {
                             .accessibilityLabel("エラー: \(error)")
                     }
                     LabeledContent("行幅") {
-                        TextField("例: 40", value: $rowHeight, format: .number)
+                        TextField("例: 40", value: Binding(get: { Double(rowHeight) }, set: { rowHeight = CGFloat($0) }), format: .number)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                             .focused($focusedField, equals: .rowHeight)
