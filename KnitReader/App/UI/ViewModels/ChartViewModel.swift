@@ -30,6 +30,7 @@ final class ChartViewModel: ObservableObject {
 
     @Published var startY: CGFloat = 100
     @Published var rowHeight: CGFloat = 40
+    @Published var endY: CGFloat = 1000
     @Published var stepCount: Int = 1
 
     // MARK: - PencilKit State
@@ -98,6 +99,7 @@ final class ChartViewModel: ObservableObject {
         currentBookmarkData = nil
         currentFileURLString = nil
         drawingData = nil
+        endY = img.size.height
         seedDummyMarkers(documentHeight: img.size.height)
     }
 
@@ -133,6 +135,7 @@ final class ChartViewModel: ObservableObject {
             pageHeight = 0
             currentBookmarkData = bookmarkData
             currentFileURLString = urlString
+            endY = img.size.height
 
             if let existing {
                 restoreProgress(existing)
@@ -176,6 +179,7 @@ final class ChartViewModel: ObservableObject {
             pageHeight = docSize.height
             currentBookmarkData = bookmarkData
             currentFileURLString = urlString
+            endY = docSize.height
 
             if let existing {
                 restoreProgress(existing)
@@ -241,10 +245,21 @@ final class ChartViewModel: ObservableObject {
 
     // MARK: - Settings Actions
 
-    /// 現在の startY / rowHeight / stepCount でマーカーを再生成し、Undo履歴をリセットする。
+    /// 現在の startY / rowHeight / endY でマーカーを再生成し、Undo履歴をリセットする。
     func applyRowSettings() {
         guard let doc = chartDocument else { return }
         seedDummyMarkers(documentHeight: doc.documentSize.height)
+        saveProgress()
+    }
+
+    /// 行位置を保ったまま全チェックをリセットし、現在行を末尾（最終行）に戻す。
+    func resetRowsAndChecks() {
+        guard !markers.isEmpty else { return }
+        objectWillChange.send()
+        let resetMarkers = markers.map { RowMarker(yPosition: $0.yPosition, isChecked: false) }
+        markersUndo.push(resetMarkers)
+        rowIndexUndo.push(max(0, markers.count - 1))
+        checkCountUndo.push(0)
         saveProgress()
     }
 
@@ -276,9 +291,10 @@ final class ChartViewModel: ObservableObject {
     }
 
     private func seedDummyMarkers(documentHeight: CGFloat) {
+        let limit = min(endY, documentHeight)
         var markers: [RowMarker] = []
         var y = startY
-        while y < documentHeight {
+        while y < limit {
             markers.append(RowMarker(yPosition: y))
             y += rowHeight
         }

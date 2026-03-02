@@ -7,8 +7,11 @@ import SwiftData
 struct ContentView: View {
     @StateObject private var viewModel = ChartViewModel()
     @State private var showDocumentPicker = false
-    @State private var isRowSettingsMode = false
+    /// 0: 通常, 1: 行の開始と幅を設定, 2: 行の終了を設定
+    @State private var rowSettingsStep = 0
     @State private var showHelp = false
+
+    private var isRowSettingsMode: Bool { rowSettingsStep > 0 }
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {
@@ -84,11 +87,13 @@ struct ContentView: View {
                 onToggleMarker: { viewModel.toggleMarker(at: $0) }
             )
 
-            if isRowSettingsMode {
+            if rowSettingsStep > 0 {
                 RowSettingsOverlayView(
                     startY: $viewModel.startY,
                     rowHeight: $viewModel.rowHeight,
-                    transform: viewModel.transform
+                    endY: $viewModel.endY,
+                    transform: viewModel.transform,
+                    isEndStep: rowSettingsStep == 2
                 )
             }
 
@@ -122,11 +127,13 @@ struct ContentView: View {
                 onToggleMarker: { viewModel.toggleMarker(at: $0) }
             )
 
-            if isRowSettingsMode {
+            if rowSettingsStep > 0 {
                 RowSettingsOverlayView(
                     startY: $viewModel.startY,
                     rowHeight: $viewModel.rowHeight,
-                    transform: viewModel.transform
+                    endY: $viewModel.endY,
+                    transform: viewModel.transform,
+                    isEndStep: rowSettingsStep == 2
                 )
             }
 
@@ -191,6 +198,16 @@ struct ContentView: View {
             .disabled(viewModel.drawingData == nil || isRowSettingsMode)
             .accessibilityLabel("手書きメモをクリア")
 
+            // 行・チェックリセット
+            Button {
+                viewModel.resetRowsAndChecks()
+            } label: {
+                Image(systemName: "arrow.counterclockwise.circle")
+            }
+            .disabled(viewModel.markers.isEmpty || isRowSettingsMode)
+            .accessibilityLabel("行とチェックをリセット")
+            .accessibilityHint("全チェックを外し、現在行を最終行に戻します")
+
             Spacer()
 
             // - ボタン（カウントを -1）
@@ -218,16 +235,22 @@ struct ContentView: View {
         }
 
         ToolbarItem(placement: .topBarLeading) {
-            if isRowSettingsMode {
+            if rowSettingsStep == 1 {
+                Button("次へ") {
+                    rowSettingsStep = 2
+                }
+                .fontWeight(.semibold)
+                .accessibilityLabel("終了位置の設定へ進む")
+            } else if rowSettingsStep == 2 {
                 Button("完了") {
                     viewModel.applyRowSettings()
-                    isRowSettingsMode = false
+                    rowSettingsStep = 0
                 }
                 .fontWeight(.semibold)
                 .accessibilityLabel("行設定を確定する")
             } else {
                 Button {
-                    isRowSettingsMode = true
+                    rowSettingsStep = 1
                 } label: {
                     Image(systemName: "slider.horizontal.3")
                 }
