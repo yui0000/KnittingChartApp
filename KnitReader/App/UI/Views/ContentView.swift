@@ -178,6 +178,31 @@ struct ContentView: View {
 
             Spacer()
 
+            // - ボタン（1行戻る）
+            Button {
+                viewModel.decrementCheckCount()
+            } label: {
+                Image(systemName: "minus.circle.fill")
+                    .font(.title2)
+            }
+            .disabled(viewModel.checkCount == 0 || isRowSettingsMode)
+            .accessibilityLabel("カウントを減らす")
+            .accessibilityHint("カウントを1減らします")
+
+            // + ボタン（行を進める）
+            Button {
+                viewModel.advanceRow()
+            } label: {
+                Image(systemName: "plus.circle.fill")
+                    .font(.title2)
+            }
+            .disabled(isRowSettingsMode)
+            .accessibilityLabel("次の行に進む")
+            .accessibilityHint("現在行をチェック済みにして次の行へ進みます")
+            .keyboardShortcut(.return, modifiers: [])
+
+            Spacer()
+
             // 手書きモードトグル
             Button {
                 viewModel.isPencilMode.toggle()
@@ -207,31 +232,6 @@ struct ContentView: View {
             .disabled(viewModel.markers.isEmpty || isRowSettingsMode)
             .accessibilityLabel("行とチェックをリセット")
             .accessibilityHint("全チェックを外し、現在行を最終行に戻します")
-
-            Spacer()
-
-            // - ボタン（カウントを -1）
-            Button {
-                viewModel.decrementCheckCount()
-            } label: {
-                Image(systemName: "minus.circle.fill")
-                    .font(.title2)
-            }
-            .disabled(viewModel.checkCount == 0 || isRowSettingsMode)
-            .accessibilityLabel("カウントを減らす")
-            .accessibilityHint("カウントを1減らします")
-
-            // + ボタン（行を進める）
-            Button {
-                viewModel.advanceRow()
-            } label: {
-                Image(systemName: "plus.circle.fill")
-                    .font(.title2)
-            }
-            .disabled(isRowSettingsMode)
-            .accessibilityLabel("次の行に進む")
-            .accessibilityHint("現在行をチェック済みにして次の行へ進みます")
-            .keyboardShortcut(.return, modifiers: [])
         }
 
         ToolbarItem(placement: .topBarLeading) {
