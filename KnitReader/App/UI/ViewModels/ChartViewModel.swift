@@ -210,10 +210,21 @@ final class ChartViewModel: ObservableObject {
         saveProgress()
     }
 
-    /// チェックカウントを 1 減らす（行位置は変更しない）。
+    /// 1行前（下方向）に戻る。チェックカウントを −1、行線を下に1行分移動し、戻った行のチェックを外す。
+    /// advanceRow の逆操作。マーカーは上から下（インデックス増加）の順のため、「下へ戻る」はインデックスを増やす操作。
     func decrementCheckCount() {
         guard checkCount > 0 else { return }
         objectWillChange.send()
+
+        // 下方向へ移動（インデックス増加）
+        let newIndex = min(currentRowIndex + 1, markers.count - 1)
+        rowIndexUndo.push(newIndex)
+
+        // 戻った行のチェックを外す
+        var updatedMarkers = markers
+        updatedMarkers[newIndex].isChecked = false
+        markersUndo.push(updatedMarkers)
+
         checkCountUndo.push(checkCount - 1)
         saveProgress()
     }
