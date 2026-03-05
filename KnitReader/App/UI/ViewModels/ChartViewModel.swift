@@ -235,14 +235,34 @@ final class ChartViewModel: ObservableObject {
         saveProgress()
     }
 
-    /// 指定インデックスのマーカーの isChecked をトグルする。
-    /// 行番号（currentRowIndex）は変更しない。
+    /// 指定インデックスのマーカーの isChecked をトグルし、行位置を連動させる。
+    ///
+    /// - トグル可能なのは `currentRowIndex`（次にチェックする行）と
+    ///   `currentRowIndex - 1`（直前にチェックした行）のみ。
+    ///   これによりチェックの連続性が保たれる。
+    /// - チェックを入れた場合: currentRowIndex を 1 つ上（−1）へ移動。
+    /// - チェックを外した場合: currentRowIndex をそのインデックスへ戻す。
+    /// - checkCount には影響しない。
     func toggleMarker(at index: Int) {
         guard index >= 0 && index < markers.count else { return }
+        // 現在行と直前行のみ操作可能（ギャップを防ぐ）
+        guard index == currentRowIndex || index == currentRowIndex - 1 else { return }
         objectWillChange.send()
+
         var updatedMarkers = markers
-        updatedMarkers[index].isChecked.toggle()
+        let newChecked = !updatedMarkers[index].isChecked
+        updatedMarkers[index].isChecked = newChecked
         markersUndo.push(updatedMarkers)
+
+        // 行位置を連動
+        if newChecked {
+            // チェックを入れた → 一つ上の行（インデックス減少）へ移動
+            rowIndexUndo.push(max(0, index - 1))
+        } else {
+            // チェックを外した → そのインデックスへ戻す
+            rowIndexUndo.push(index)
+        }
+        // checkCount は変更しない
         saveProgress()
     }
 
