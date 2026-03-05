@@ -79,17 +79,9 @@ struct RowMarkerOverlayView: View {
             context.stroke(path, with: .color(.yellow.opacity(opacity)), style: lineStyle)
 
             // チェックボックス（行幅の中心に配置）
-            // 現在行と直前行のみ操作可能なため、それ以外は薄く表示
-            let isInteractive = index == currentRowIndex || index == currentRowIndex - 1
             let sym = marker.isChecked ? checkedSym : uncheckedSym
             if let sym {
-                if isInteractive {
-                    context.draw(sym, at: CGPoint(x: checkboxCenterX, y: viewY + checkboxOffsetY), anchor: .center)
-                } else {
-                    var dimCtx = context
-                    dimCtx.opacity = 0.25
-                    dimCtx.draw(sym, at: CGPoint(x: checkboxCenterX, y: viewY + checkboxOffsetY), anchor: .center)
-                }
+                context.draw(sym, at: CGPoint(x: checkboxCenterX, y: viewY + checkboxOffsetY), anchor: .center)
             }
         }
     }
@@ -112,8 +104,6 @@ struct RowMarkerOverlayView: View {
         }
         let threshold = max(20, rowHeightInView / 2)
         if let idx = closestIndex, minDist <= threshold {
-            // 現在行と直前行のみタップ有効（ギャップを防ぐ）
-            guard idx == currentRowIndex || idx == currentRowIndex - 1 else { return }
             onToggleMarker?(idx)
         }
     }
