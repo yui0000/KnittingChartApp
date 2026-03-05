@@ -287,7 +287,7 @@ final class ChartViewModel: ObservableObject {
         }
     }
 
-    /// 行位置を保ったまま全チェックをリセットし、現在行を末尾（最終行）に戻す。
+    /// 【すべて】カウント・チェック・行インデックスをすべてリセットする。
     func resetRowsAndChecks() {
         guard !markers.isEmpty else { return }
         objectWillChange.send()
@@ -295,6 +295,16 @@ final class ChartViewModel: ObservableObject {
         markersUndo.push(resetMarkers)
         rowIndexUndo.push(max(0, markers.count - 1))
         checkCountUndo.push(0)
+        saveProgress()
+    }
+
+    /// 【行位置のみ】チェックと行インデックスのみリセットする。カウントは保持する。
+    func resetRowsOnly() {
+        guard !markers.isEmpty else { return }
+        objectWillChange.send()
+        let resetMarkers = markers.map { RowMarker(yPosition: $0.yPosition, isChecked: false) }
+        markersUndo.push(resetMarkers)
+        rowIndexUndo.push(max(0, markers.count - 1))
         saveProgress()
     }
 

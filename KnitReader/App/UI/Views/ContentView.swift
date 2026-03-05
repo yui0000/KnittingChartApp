@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var savedRowHeight: CGFloat = 0
 
     private var isRowSettingsMode: Bool { rowSettingsStep > 0 }
+    @State private var showResetOptions = false
 
     private func enterRowSettings() {
         savedStartY = viewModel.startY
@@ -248,13 +249,23 @@ struct ContentView: View {
 
             // 行・チェックリセット
             Button {
-                viewModel.resetRowsAndChecks()
+                showResetOptions = true
             } label: {
                 Image(systemName: "arrow.counterclockwise.circle")
             }
             .disabled(viewModel.markers.isEmpty || isRowSettingsMode)
             .accessibilityLabel("行とチェックをリセット")
-            .accessibilityHint("全チェックを外し、現在行を最終行に戻します")
+            .confirmationDialog("リセットの種類を選択", isPresented: $showResetOptions, titleVisibility: .visible) {
+                Button("すべて", role: .destructive) {
+                    viewModel.resetRowsAndChecks()
+                }
+                Button("行位置のみ") {
+                    viewModel.resetRowsOnly()
+                }
+                Button("キャンセル", role: .cancel) { }
+            } message: {
+                Text("「すべて」はカウント・チェック・行を初期化します。「行位置のみ」はカウントを保持してチェックと行を初期化します。")
+            }
         }
 
         ToolbarItem(placement: .topBarLeading) {
