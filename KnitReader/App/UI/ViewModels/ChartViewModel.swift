@@ -263,6 +263,24 @@ final class ChartViewModel: ObservableObject {
         saveProgress()
     }
 
+    /// 行設定モード開始時に既存マーカーから startY / endY を初期化する。
+    /// Image モード: startY = 最下行（最大Y）、endY = 最上行（最小Y）
+    /// PDF モード:   startY = 最下行（最小PDF-Y）、endY = 最上行（最大PDF-Y）
+    func prepareForRowSettings() {
+        guard !markers.isEmpty else { return }
+        let minY = markers.map(\.yPosition).min()!
+        let maxY = markers.map(\.yPosition).max()!
+        if pageHeight > 0 {
+            // PDF: Y 上向き → 小さい Y = 下（knitting 開始点）
+            startY = minY
+            endY = maxY
+        } else {
+            // Image: Y 下向き → 大きい Y = 下（knitting 開始点）
+            startY = maxY
+            endY = minY
+        }
+    }
+
     /// 行位置を保ったまま全チェックをリセットし、現在行を末尾（最終行）に戻す。
     func resetRowsAndChecks() {
         guard !markers.isEmpty else { return }
@@ -302,10 +320,12 @@ final class ChartViewModel: ObservableObject {
     }
 
     private func seedDummyMarkers(documentHeight: CGFloat) {
-        let limit = min(endY, documentHeight)
+        // startY と endY の大小にかかわらず min→max 方向で生成（常に昇順）
+        let lo = min(startY, endY)
+        let hi = min(max(startY, endY), documentHeight)
         var markers: [RowMarker] = []
-        var y = startY
-        while y < limit {
+        var y = lo
+        while y <= hi {
             markers.append(RowMarker(yPosition: y))
             y += rowHeight
         }

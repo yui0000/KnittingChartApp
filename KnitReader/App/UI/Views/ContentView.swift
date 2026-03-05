@@ -10,8 +10,27 @@ struct ContentView: View {
     /// 0: 通常, 1: 行の開始と幅を設定, 2: 行の終了を設定
     @State private var rowSettingsStep = 0
     @State private var showHelp = false
+    // 行設定モード開始時の値を保存（キャンセル時に復元）
+    @State private var savedStartY: CGFloat = 0
+    @State private var savedEndY: CGFloat = 0
+    @State private var savedRowHeight: CGFloat = 0
 
     private var isRowSettingsMode: Bool { rowSettingsStep > 0 }
+
+    private func enterRowSettings() {
+        savedStartY = viewModel.startY
+        savedEndY = viewModel.endY
+        savedRowHeight = viewModel.rowHeight
+        viewModel.prepareForRowSettings()
+        rowSettingsStep = 1
+    }
+
+    private func cancelRowSettings() {
+        viewModel.startY = savedStartY
+        viewModel.endY = savedEndY
+        viewModel.rowHeight = savedRowHeight
+        rowSettingsStep = 0
+    }
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {
@@ -77,15 +96,17 @@ struct ContentView: View {
                 viewportSize: $viewModel.viewportSize
             )
 
-            RowMarkerOverlayView(
-                markers: viewModel.markers,
-                currentRowIndex: viewModel.currentRowIndex,
-                transform: viewModel.transform,
-                viewportSize: viewModel.viewportSize,
-                documentWidth: viewModel.chartDocument?.documentSize.width ?? 0,
-                rowHeight: viewModel.rowHeight,
-                onToggleMarker: { viewModel.toggleMarker(at: $0) }
-            )
+            if !isRowSettingsMode {
+                RowMarkerOverlayView(
+                    markers: viewModel.markers,
+                    currentRowIndex: viewModel.currentRowIndex,
+                    transform: viewModel.transform,
+                    viewportSize: viewModel.viewportSize,
+                    documentWidth: viewModel.chartDocument?.documentSize.width ?? 0,
+                    rowHeight: viewModel.rowHeight,
+                    onToggleMarker: { viewModel.toggleMarker(at: $0) }
+                )
+            }
 
             if rowSettingsStep > 0 {
                 RowSettingsOverlayView(
@@ -117,15 +138,17 @@ struct ContentView: View {
                 pageHeight: $viewModel.pageHeight
             )
 
-            RowMarkerOverlayView(
-                markers: viewModel.markers,
-                currentRowIndex: viewModel.currentRowIndex,
-                transform: viewModel.transform,
-                viewportSize: viewModel.viewportSize,
-                documentWidth: viewModel.chartDocument?.documentSize.width ?? 0,
-                rowHeight: viewModel.rowHeight,
-                onToggleMarker: { viewModel.toggleMarker(at: $0) }
-            )
+            if !isRowSettingsMode {
+                RowMarkerOverlayView(
+                    markers: viewModel.markers,
+                    currentRowIndex: viewModel.currentRowIndex,
+                    transform: viewModel.transform,
+                    viewportSize: viewModel.viewportSize,
+                    documentWidth: viewModel.chartDocument?.documentSize.width ?? 0,
+                    rowHeight: viewModel.rowHeight,
+                    onToggleMarker: { viewModel.toggleMarker(at: $0) }
+                )
+            }
 
             if rowSettingsStep > 0 {
                 RowSettingsOverlayView(
@@ -236,21 +259,33 @@ struct ContentView: View {
 
         ToolbarItem(placement: .topBarLeading) {
             if rowSettingsStep == 1 {
-                Button("次へ") {
-                    rowSettingsStep = 2
+                HStack(spacing: 16) {
+                    Button("キャンセル") {
+                        cancelRowSettings()
+                    }
+                    .foregroundStyle(.secondary)
+                    Button("次へ") {
+                        rowSettingsStep = 2
+                    }
+                    .fontWeight(.semibold)
+                    .accessibilityLabel("終了位置の設定へ進む")
                 }
-                .fontWeight(.semibold)
-                .accessibilityLabel("終了位置の設定へ進む")
             } else if rowSettingsStep == 2 {
-                Button("完了") {
-                    viewModel.applyRowSettings()
-                    rowSettingsStep = 0
+                HStack(spacing: 16) {
+                    Button("キャンセル") {
+                        cancelRowSettings()
+                    }
+                    .foregroundStyle(.secondary)
+                    Button("完了") {
+                        viewModel.applyRowSettings()
+                        rowSettingsStep = 0
+                    }
+                    .fontWeight(.semibold)
+                    .accessibilityLabel("行設定を確定する")
                 }
-                .fontWeight(.semibold)
-                .accessibilityLabel("行設定を確定する")
             } else {
                 Button {
-                    rowSettingsStep = 1
+                    enterRowSettings()
                 } label: {
                     Image(systemName: "slider.horizontal.3")
                 }

@@ -2,8 +2,13 @@ import SwiftUI
 
 /// 行設定モード時に表示するインタラクティブな黄色線オーバーレイ。
 ///
-/// - Step 1 (`isEndStep == false`): ドラッグで始点Y（startY）、ピンチで行幅（rowHeight）を調整。
-/// - Step 2 (`isEndStep == true`): ドラッグで終了Y（endY）を調整。終了ラインをオレンジで表示。
+/// - Step 1 (`isEndStep == false`):
+///   ドラッグで始点Y（startY = 最下行の位置）を調整、ピンチで行幅（rowHeight）を調整。
+///   行は始点から **上方向** に伸びる。
+/// - Step 2 (`isEndStep == true`):
+///   画面をタップして終了位置（endY）を指定。
+///   終了位置は始点より上（小さい viewY）でなければならない。
+///   終了ラインはオレンジで表示される。
 /// - 画像・PDF 両座標系に対応（CoordinateTransform 経由）。
 struct RowSettingsOverlayView: View {
     @Binding var startY: CGFloat
@@ -21,38 +26,52 @@ struct RowSettingsOverlayView: View {
         return max(8, rowHeight * scale * transform.zoomScale)
     }
 
-    /// 行間方向（画像: 下向き +、PDF: 上向き −）
-    private var stepInView: CGFloat {
-        transform.pageHeight > 0 ? -rowHeightInView : rowHeightInView
-    }
+    /// 行間方向: 常に上方向（負）。
+    /// startY は最下行の位置なので、そこから上に向けて行を描画する。
+    private var stepInView: CGFloat { -rowHeightInView }
 
     var body: some View {
         ZStack(alignment: .top) {
-            Canvas { context, size in
-                drawOverlay(context: &context, size: size)
+            // ステップに応じてジェスチャーを切り替える
+            if isEndStep {
+                rawCanvas
+                    .onTapGesture(coordinateSpace: .local) { location in
+                        let startViewY = transform.documentToViewY(startY)
+                        // 終了位置は開始位置より上（小さい viewY）でなければならない
+                        guard location.y < startViewY else { return }
+                        endY = transform.viewToDocumentY(location.y)
+                    }
+            } else {
+                rawCanvas
+                    .gesture(dragGesture)
+                    .simultaneousGesture(pinchGesture)
             }
-            .contentShape(Rectangle())
-            .gesture(dragGesture)
-            .simultaneousGesture(pinchGesture)
 
             instructionLabel
         }
     }
 
-    // MARK: - Canvas Drawing
+    // MARK: - Canvas
+
+    private var rawCanvas: some View {
+        Canvas { context, size in
+            drawOverlay(context: &context, size: size)
+        }
+        .contentShape(Rectangle())
+    }
 
     private func drawOverlay(context: inout GraphicsContext, size: CGSize) {
         let yellow = GraphicsContext.Shading.color(.yellow)
         let lineStyle = StrokeStyle(lineWidth: 1.5)
 
-        // Step 1: startY がドラッグで動く / Step 2: startY 固定
+        // Step 1 ではドラッグ中に始点が動く、Step 2 では始点は固定
         let originY: CGFloat = transform.documentToViewY(startY) + (isEndStep ? 0 : dragDelta)
-        let step = stepInView
+        let step = stepInView  // 常に負（上方向）
 
         // Step 1 のみ最初の行帯をハイライト
         if !isEndStep {
             let bandH = abs(step)
-            let bandY = min(originY, originY + step)
+            let bandY = min(originY + step, originY)
             if bandH > 0 && bandY < size.height && bandY + bandH > 0 {
                 context.fill(
                     Path(CGRect(x: 0, y: bandY, width: size.width, height: bandH)),
@@ -61,7 +80,7 @@ struct RowSettingsOverlayView: View {
             }
         }
 
-        // 始点から順方向に行線を描画
+        // 始点から上方向（step < 0）に行線を描画
         var y = originY
         var count = 0
         while count < 200 && y >= -1 && y <= size.height + 1 {
@@ -70,7 +89,7 @@ struct RowSettingsOverlayView: View {
             count += 1
         }
 
-        // 始点から逆方向に行線を描画
+        // 始点から下方向（-step > 0）に行線を描画
         y = originY - step
         count = 0
         while count < 200 && y >= -1 && y <= size.height + 1 {
@@ -79,9 +98,9 @@ struct RowSettingsOverlayView: View {
             count += 1
         }
 
-        // Step 2: 終了ラインをオレンジで強調表示
+        // Step 2: タップで設定した終了ラインをオレンジで強調表示
         if isEndStep {
-            let endViewY = transform.documentToViewY(endY) + dragDelta
+            let endViewY = transform.documentToViewY(endY)
             strokeLine(
                 context: &context, y: endViewY, size: size,
                 shading: .color(.orange),
@@ -108,15 +127,9 @@ struct RowSettingsOverlayView: View {
                 state = value.translation.height
             }
             .onEnded { value in
-                if isEndStep {
-                    let baseViewY = transform.documentToViewY(endY)
-                    let newViewY = baseViewY + value.translation.height
-                    endY = max(startY + rowHeight, transform.viewToDocumentY(newViewY))
-                } else {
-                    let baseViewY = transform.documentToViewY(startY)
-                    let newViewY = baseViewY + value.translation.height
-                    startY = max(0, transform.viewToDocumentY(newViewY))
-                }
+                let baseViewY = transform.documentToViewY(startY)
+                let newViewY = baseViewY + value.translation.height
+                startY = max(0, transform.viewToDocumentY(newViewY))
             }
     }
 
@@ -126,16 +139,14 @@ struct RowSettingsOverlayView: View {
                 state = value.magnification
             }
             .onEnded { value in
-                if !isEndStep {
-                    rowHeight = max(1, rowHeight * value.magnification)
-                }
+                rowHeight = max(1, rowHeight * value.magnification)
             }
     }
 
     // MARK: - Instruction Label
 
     private var instructionLabel: some View {
-        Text(isEndStep ? "行の終了を設定してください" : "行の開始と幅を設定してください")
+        Text(isEndStep ? "行の終了をタップして設定してください" : "行の開始と幅を設定してください")
             .font(.headline)
             .foregroundStyle(.white)
             .padding(.horizontal, 16)
