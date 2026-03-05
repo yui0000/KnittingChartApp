@@ -211,19 +211,25 @@ final class ChartViewModel: ObservableObject {
     }
 
     /// 1行前（下方向）に戻る。チェックカウントを −1、行線を下に1行分移動し、戻った行のチェックを外す。
-    /// advanceRow の逆操作。マーカーは上から下（インデックス増加）の順のため、「下へ戻る」はインデックスを増やす操作。
+    /// 例外: 最上行（index 0）かつ最上行にチェックが入っている場合は行を動かさずチェックだけ外す。
     func decrementCheckCount() {
         guard checkCount > 0 else { return }
         objectWillChange.send()
 
-        // 下方向へ移動（インデックス増加）
-        let newIndex = min(currentRowIndex + 1, markers.count - 1)
-        rowIndexUndo.push(newIndex)
-
-        // 戻った行のチェックを外す
         var updatedMarkers = markers
-        updatedMarkers[newIndex].isChecked = false
-        markersUndo.push(updatedMarkers)
+
+        if currentRowIndex == 0 && markers.first?.isChecked == true {
+            // 一番上の行でチェック済み → 行はそのままでチェックだけ外す
+            updatedMarkers[0].isChecked = false
+            markersUndo.push(updatedMarkers)
+            // rowIndexUndo は変更なし（index 0 のまま）
+        } else {
+            // 通常: 下方向へ移動（インデックス増加）して戻った行のチェックを外す
+            let newIndex = min(currentRowIndex + 1, markers.count - 1)
+            rowIndexUndo.push(newIndex)
+            updatedMarkers[newIndex].isChecked = false
+            markersUndo.push(updatedMarkers)
+        }
 
         checkCountUndo.push(checkCount - 1)
         saveProgress()
