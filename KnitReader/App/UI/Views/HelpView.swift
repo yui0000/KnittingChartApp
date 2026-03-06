@@ -15,21 +15,60 @@ struct HelpView: View {
                     )
                 }
 
-                Section("行を進める") {
-                    HelpRow(
-                        icon: "plus.circle.fill",
-                        title: "次の行に進む",
-                        description: "＋ボタンまたは Return キーで現在行を進めます。前の行がチェック済みになります。"
-                    )
+                Section("行の設定") {
                     HelpRow(
                         icon: "slider.horizontal.3",
-                        title: "行の設定",
-                        description: "始点 Y・行幅・ステップ数を変更します。適用するとマーカーが再生成されます。"
+                        title: "行の設定を開始",
+                        description: "左上のスライダーアイコンをタップして行設定モードに入ります。"
                     )
                     HelpRow(
-                        icon: "arrow.uturn.backward",
-                        title: "元に戻す",
-                        description: "行インデックス・マーカー・チェックカウントをそれぞれ独立して元に戻せます。"
+                        icon: "hand.draw",
+                        title: "ステップ1: 開始と幅を設定",
+                        description: "ドラッグで最下行の位置を、ピンチで行幅を調整します。「次へ」で次のステップへ進みます。"
+                    )
+                    HelpRow(
+                        icon: "hand.point.up",
+                        title: "ステップ2: 終了位置を設定",
+                        description: "開始位置より上の行をタップして最上行を指定します。「完了」で設定を反映します。"
+                    )
+                    HelpRow(
+                        icon: "xmark.circle",
+                        iconColor: .secondary,
+                        title: "キャンセル",
+                        description: "各ステップの「キャンセル」をタップすると設定前の状態に戻ります。"
+                    )
+                }
+
+                Section("行を進める / 戻る") {
+                    HelpRow(
+                        icon: "plus.circle.fill",
+                        title: "次の行に進む（Return）",
+                        description: "現在行をチェック済みにして1行上へ進みます。チェックカウントも +1 されます。"
+                    )
+                    HelpRow(
+                        icon: "minus.circle.fill",
+                        iconColor: .secondary,
+                        title: "1行戻る",
+                        description: "1行下に戻り、戻った行のチェックを外します。チェックカウントも −1 されます。"
+                    )
+                }
+
+                Section("リセット") {
+                    HelpRow(
+                        icon: "arrow.counterclockwise.circle",
+                        title: "リセット",
+                        description: "リセットボタンをタップすると選択肢が表示されます。"
+                    )
+                    HelpRow(
+                        icon: "arrow.counterclockwise",
+                        title: "すべて",
+                        description: "チェック・行位置・カウントをすべて初期状態に戻します。"
+                    )
+                    HelpRow(
+                        icon: "arrow.counterclockwise",
+                        iconColor: .secondary,
+                        title: "行位置のみ",
+                        description: "チェックと行位置を初期状態に戻します。カウントは保持されます。"
                     )
                 }
 
@@ -37,7 +76,7 @@ struct HelpView: View {
                     HelpRow(
                         icon: "pencil.tip",
                         title: "手書きモード（⌘P）",
-                        description: "鉛筆アイコンをタップして手書きモードをオンにします。Apple Pencil または指で書き込めます。"
+                        description: "鉛筆アイコンをタップして手書きモードをオンにします。Apple Pencil または指で書き込めます。「完了」で終了します。"
                     )
                     HelpRow(
                         icon: "trash",
@@ -48,27 +87,27 @@ struct HelpView: View {
 
                 Section("行マーカーの見方") {
                     HelpRow(
-                        icon: "minus",
-                        iconColor: .accentColor,
-                        title: "現在行（太い実線）",
-                        description: "今読んでいる行を示します。"
+                        icon: "rectangle.fill",
+                        iconColor: .yellow.opacity(0.5),
+                        title: "現在行（黄色バンド）",
+                        description: "今読んでいる行を黄色い帯でハイライト表示します。"
                     )
                     HelpRow(
-                        icon: "minus",
-                        iconColor: .secondary,
-                        title: "チェック済み（細い実線）",
-                        description: "完了済みの行です。"
+                        icon: "checkmark.square.fill",
+                        iconColor: .yellow,
+                        title: "チェック済み",
+                        description: "読み終えた行のチェックボックスが塗りつぶされます。チェックの操作は＋／−ボタンで行います。"
                     )
                     HelpRow(
-                        icon: "ellipsis",
-                        iconColor: .secondary.opacity(0.5),
-                        title: "未チェック（点線）",
-                        description: "まだ読んでいない行です。"
+                        icon: "square",
+                        iconColor: .yellow.opacity(0.6),
+                        title: "未チェック",
+                        description: "まだ読んでいない行は空のチェックボックスで表示されます。"
                     )
                 }
 
                 Section("キーボードショートカット") {
-                    HelpRow(icon: "keyboard", title: "Return", description: "次の行に進む")
+                    HelpRow(icon: "keyboard", title: "Return", description: "次の行に進む（＋ボタンと同じ）")
                     HelpRow(icon: "keyboard", title: "⌘P", description: "手書きモードのオン / オフ")
                 }
             }
