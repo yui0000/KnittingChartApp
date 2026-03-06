@@ -188,7 +188,7 @@ struct ContentView: View {
         ToolbarItemGroup(placement: .bottomBar) {
             // 行カウンター（下から数えた行番号）
             Text("行 \(viewModel.markers.count - viewModel.currentRowIndex) / \(viewModel.markers.count)")
-                .font(.caption)
+                .font(.callout)
                 .monospacedDigit()
                 .accessibilityLabel("現在 \(viewModel.markers.count - viewModel.currentRowIndex) 行目、全 \(viewModel.markers.count) 行")
 
@@ -196,7 +196,7 @@ struct ContentView: View {
 
             // チェックカウント
             Text("\(viewModel.checkCount)")
-                .font(.caption)
+                .font(.callout)
                 .monospacedDigit()
                 .accessibilityLabel("チェック数 \(viewModel.checkCount)")
 
