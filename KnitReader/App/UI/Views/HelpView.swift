@@ -106,10 +106,6 @@ struct HelpView: View {
                     )
                 }
 
-                Section("キーボードショートカット") {
-                    HelpRow(icon: "keyboard", title: "Return", description: "次の行に進む（＋ボタンと同じ）")
-                    HelpRow(icon: "keyboard", title: "⌘P", description: "手書きモードのオン / オフ")
-                }
             }
             .navigationTitle("ヘルプ")
             .navigationBarTitleDisplayMode(.inline)
