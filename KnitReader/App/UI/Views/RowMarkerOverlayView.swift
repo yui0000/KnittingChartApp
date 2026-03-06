@@ -31,15 +31,6 @@ struct RowMarkerOverlayView: View {
                 .tag(1)
         }
         .allowsHitTesting(false)
-        .overlay(alignment: .leading) {
-            Color.clear
-                .frame(width: checkboxHitWidth)
-                .frame(maxHeight: .infinity)
-                .contentShape(Rectangle())
-                .onTapGesture(coordinateSpace: .local) { location in
-                    handleCheckboxTap(at: location.y)
-                }
-        }
         .accessibilityHidden(true)
     }
 
