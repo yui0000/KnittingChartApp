@@ -348,6 +348,6 @@ final class ChartViewModel: ObservableObject {
         markersUndo.reset(to: markers)
         // 編み物は下（末尾）から読み始めるため、最後のインデックスを初期位置にする
         rowIndexUndo.reset(to: max(0, markers.count - 1))
-        checkCountUndo.reset(to: 0)
+        // checkCount は行設定時に初期化しない
     }
 }
