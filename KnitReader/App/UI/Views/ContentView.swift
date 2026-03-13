@@ -63,7 +63,7 @@ struct ContentView: View {
             } message: {
                 Text(viewModel.loadError ?? "")
             }
-            .navigationTitle("KnitReader")
+            .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
         }
         .task {
@@ -185,21 +185,20 @@ struct ContentView: View {
 
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .principal) {
+            HStack(spacing: 24) {
+                Text("行 \(viewModel.markers.count - viewModel.currentRowIndex) / \(viewModel.markers.count)")
+                    .font(.callout)
+                    .monospacedDigit()
+                    .accessibilityLabel("現在 \(viewModel.markers.count - viewModel.currentRowIndex) 行目、全 \(viewModel.markers.count) 行")
+                Text("\(viewModel.checkCount)")
+                    .font(.callout)
+                    .monospacedDigit()
+                    .accessibilityLabel("チェック数 \(viewModel.checkCount)")
+            }
+        }
+
         ToolbarItemGroup(placement: .bottomBar) {
-            // 行カウンター（下から数えた行番号）
-            Text("行 \(viewModel.markers.count - viewModel.currentRowIndex) / \(viewModel.markers.count)")
-                .font(.callout)
-                .monospacedDigit()
-                .accessibilityLabel("現在 \(viewModel.markers.count - viewModel.currentRowIndex) 行目、全 \(viewModel.markers.count) 行")
-
-            Spacer()
-
-            // チェックカウント
-            Text("\(viewModel.checkCount)")
-                .font(.callout)
-                .monospacedDigit()
-                .accessibilityLabel("チェック数 \(viewModel.checkCount)")
-
             Spacer()
 
             // - ボタン（1行戻る）
