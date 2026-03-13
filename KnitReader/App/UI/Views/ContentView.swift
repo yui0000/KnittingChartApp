@@ -238,6 +238,8 @@ struct ContentView: View {
             .accessibilityLabel(viewModel.isPencilMode ? "手書きモードをオフにする" : "手書きモードをオンにする")
             .keyboardShortcut("p", modifiers: .command)
 
+            Spacer()
+
             // 行・チェックリセット
             Button {
                 showResetOptions = true
