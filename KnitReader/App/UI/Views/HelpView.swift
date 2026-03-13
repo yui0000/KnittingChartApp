@@ -39,17 +39,30 @@ struct HelpView: View {
                     )
                 }
 
+                Section("画面の見方") {
+                    HelpRow(
+                        icon: "number",
+                        title: "行番号（左）",
+                        description: "画面上部に「行 X / Y」形式で現在行番号を表示します。X は下から数えた現在の行、Y は総行数です。"
+                    )
+                    HelpRow(
+                        icon: "checkmark.circle",
+                        title: "チェックカウント（右）",
+                        description: "画面上部の数字は、これまで進めた行の総カウントです。リセットするまで累積されます。"
+                    )
+                }
+
                 Section("行を進める / 戻る") {
                     HelpRow(
                         icon: "plus.circle.fill",
-                        title: "次の行に進む（Return）",
-                        description: "現在行をチェック済みにして1行上へ進みます。チェックカウントも +1 されます。"
+                        title: "次の行に進む",
+                        description: "画面下中央の＋ボタンをタップします。現在行をチェック済みにして1行上へ進みます。チェックカウントも +1 されます。"
                     )
                     HelpRow(
                         icon: "minus.circle.fill",
                         iconColor: .secondary,
                         title: "1行戻る",
-                        description: "1行下に戻り、戻った行のチェックを外します。チェックカウントも −1 されます。"
+                        description: "画面下中央の−ボタンをタップします。1行下に戻り、戻った行のチェックを外します。チェックカウントも −1 されます。"
                     )
                 }
 
@@ -57,7 +70,7 @@ struct HelpView: View {
                     HelpRow(
                         icon: "arrow.counterclockwise.circle",
                         title: "リセット",
-                        description: "リセットボタンをタップすると選択肢が表示されます。"
+                        description: "右下のリセットボタンをタップすると選択肢が表示されます。"
                     )
                     HelpRow(
                         icon: "arrow.counterclockwise",
@@ -70,18 +83,19 @@ struct HelpView: View {
                         title: "行位置のみ",
                         description: "チェックと行位置を初期状態に戻します。カウントは保持されます。"
                     )
+                    HelpRow(
+                        icon: "pencil.tip",
+                        iconColor: .secondary,
+                        title: "手書きメモ",
+                        description: "手書きメモのみを消去します。行位置・カウントは保持されます。"
+                    )
                 }
 
                 Section("手書きメモ") {
                     HelpRow(
                         icon: "pencil.tip",
-                        title: "手書きモード（⌘P）",
-                        description: "鉛筆アイコンをタップして手書きモードをオンにします。Apple Pencil または指で書き込めます。「完了」で終了します。"
-                    )
-                    HelpRow(
-                        icon: "trash",
-                        title: "メモをクリア",
-                        description: "ゴミ箱アイコンで手書きメモをすべて消去します。"
+                        title: "手書きモード",
+                        description: "左下の鉛筆アイコンをタップして手書きモードをオンにします。Apple Pencil または指で書き込めます。「完了」で終了します。"
                     )
                 }
 
