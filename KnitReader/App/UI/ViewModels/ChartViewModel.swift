@@ -103,6 +103,25 @@ final class ChartViewModel: ObservableObject {
         seedDummyMarkers(documentHeight: img.size.height)
     }
 
+    /// 写真ライブラリから取得した UIImage を読み込む。
+    func loadFromImage(_ image: UIImage, title: String = "写真") {
+        let doc = ChartDocument(
+            id: UUID(),
+            title: title,
+            documentSize: image.size,
+            source: .photo
+        )
+        chartDocument = doc
+        chartImage = image
+        pdfDocument = nil
+        pageHeight = 0
+        currentBookmarkData = nil
+        currentFileURLString = nil
+        drawingData = nil
+        endY = image.size.height
+        seedDummyMarkers(documentHeight: image.size.height)
+    }
+
     /// ファイル URL から画像を読み込む（ドキュメントピッカー用）。
     func loadFromURL(_ url: URL) {
         let urlString = url.absoluteString

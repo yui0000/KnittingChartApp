@@ -13,6 +13,7 @@ struct ChartDocument: Equatable, Sendable {
         case bundled(name: String)
         case fileURL(URL)
         case pdfURL(URL)
+        case photo
     }
 
     var isPDF: Bool {

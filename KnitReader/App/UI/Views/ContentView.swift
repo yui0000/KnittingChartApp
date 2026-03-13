@@ -1,12 +1,16 @@
 import SwiftUI
 import PDFKit
 import PencilKit
+import PhotosUI
 import SwiftData
 
 /// メイン画面。編み図ビューア + オーバーレイ + ツールバーを構成する。
 struct ContentView: View {
     @StateObject private var viewModel = ChartViewModel()
     @State private var showDocumentPicker = false
+    @State private var showPhotosPicker = false
+    @State private var showSourceOptions = false
+    @State private var selectedPhotoItem: PhotosPickerItem? = nil
     /// 0: 通常, 1: 行の開始と幅を設定, 2: 行の終了を設定
     @State private var rowSettingsStep = 0
     @State private var showHelp = false
@@ -65,6 +69,19 @@ struct ContentView: View {
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
+            .photosPicker(isPresented: $showPhotosPicker, selection: $selectedPhotoItem, matching: .images)
+            .onChange(of: selectedPhotoItem) { _, item in
+                guard let item else { return }
+                Task {
+                    if let data = try? await item.loadTransferable(type: Data.self),
+                       let img = UIImage(data: data) {
+                        await MainActor.run {
+                            viewModel.loadFromImage(img)
+                        }
+                    }
+                    await MainActor.run { selectedPhotoItem = nil }
+                }
+            }
         }
         .task {
             viewModel.configure(
@@ -313,11 +330,16 @@ struct ContentView: View {
                     .accessibilityLabel("ヘルプ")
 
                     Button {
-                        showDocumentPicker = true
+                        showSourceOptions = true
                     } label: {
                         Image(systemName: "folder.badge.plus")
                     }
                     .accessibilityLabel("ファイルを開く")
+                    .confirmationDialog("読み込み元を選択", isPresented: $showSourceOptions) {
+                        Button("ファイルから") { showDocumentPicker = true }
+                        Button("写真から") { showPhotosPicker = true }
+                        Button("キャンセル", role: .cancel) { }
+                    }
                 }
             }
         }
