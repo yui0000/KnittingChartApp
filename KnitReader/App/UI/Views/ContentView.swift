@@ -198,68 +198,68 @@ struct ContentView: View {
             }
         }
 
-        ToolbarItemGroup(placement: .bottomBar) {
-            Spacer()
+        ToolbarItem(placement: .bottomBar) {
+            ZStack {
+                // 中央: ± ボタン
+                HStack(spacing: 8) {
+                    Button {
+                        viewModel.decrementCheckCount()
+                    } label: {
+                        Image(systemName: "minus.circle.fill")
+                            .font(.title2)
+                    }
+                    .disabled(viewModel.checkCount == 0 || isRowSettingsMode)
+                    .accessibilityLabel("カウントを減らす")
+                    .accessibilityHint("カウントを1減らします")
 
-            // - ボタン（1行戻る）
-            Button {
-                viewModel.decrementCheckCount()
-            } label: {
-                Image(systemName: "minus.circle.fill")
-                    .font(.title2)
-            }
-            .disabled(viewModel.checkCount == 0 || isRowSettingsMode)
-            .accessibilityLabel("カウントを減らす")
-            .accessibilityHint("カウントを1減らします")
-
-            // + ボタン（行を進める）
-            Button {
-                viewModel.advanceRow()
-            } label: {
-                Image(systemName: "plus.circle.fill")
-                    .font(.title2)
-            }
-            .disabled(isRowSettingsMode)
-            .accessibilityLabel("次の行に進む")
-            .accessibilityHint("現在行をチェック済みにして次の行へ進みます")
-            .keyboardShortcut(.return, modifiers: [])
-
-            Spacer()
-
-            // 手書きモードトグル
-            Button {
-                viewModel.isPencilMode.toggle()
-            } label: {
-                Image(systemName: "pencil.tip")
-                    .foregroundStyle(viewModel.isPencilMode ? Color.accentColor : Color.primary)
-            }
-            .disabled(isRowSettingsMode)
-            .accessibilityLabel(viewModel.isPencilMode ? "手書きモードをオフにする" : "手書きモードをオンにする")
-            .keyboardShortcut("p", modifiers: .command)
-
-            Spacer()
-
-            // 行・チェックリセット
-            Button {
-                showResetOptions = true
-            } label: {
-                Image(systemName: "arrow.counterclockwise.circle")
-            }
-            .disabled(viewModel.markers.isEmpty || isRowSettingsMode)
-            .accessibilityLabel("リセット")
-            .confirmationDialog("リセットの種類を選択", isPresented: $showResetOptions, titleVisibility: .visible) {
-                Button("すべて", role: .destructive) {
-                    viewModel.resetRowsAndChecks()
+                    Button {
+                        viewModel.advanceRow()
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title2)
+                    }
+                    .disabled(isRowSettingsMode)
+                    .accessibilityLabel("次の行に進む")
+                    .accessibilityHint("現在行をチェック済みにして次の行へ進みます")
+                    .keyboardShortcut(.return, modifiers: [])
                 }
-                Button("行位置のみ") {
-                    viewModel.resetRowsOnly()
+
+                // 右端: 手書き・リセット
+                HStack {
+                    Spacer()
+
+                    Button {
+                        viewModel.isPencilMode.toggle()
+                    } label: {
+                        Image(systemName: "pencil.tip")
+                            .foregroundStyle(viewModel.isPencilMode ? Color.accentColor : Color.primary)
+                    }
+                    .disabled(isRowSettingsMode)
+                    .accessibilityLabel(viewModel.isPencilMode ? "手書きモードをオフにする" : "手書きモードをオンにする")
+                    .keyboardShortcut("p", modifiers: .command)
+
+                    Button {
+                        showResetOptions = true
+                    } label: {
+                        Image(systemName: "arrow.counterclockwise.circle")
+                    }
+                    .disabled(viewModel.markers.isEmpty || isRowSettingsMode)
+                    .accessibilityLabel("リセット")
+                    .confirmationDialog("リセットの種類を選択", isPresented: $showResetOptions, titleVisibility: .visible) {
+                        Button("すべて", role: .destructive) {
+                            viewModel.resetRowsAndChecks()
+                        }
+                        Button("行位置のみ") {
+                            viewModel.resetRowsOnly()
+                        }
+                        Button("手書きメモ") {
+                            viewModel.clearDrawing()
+                        }
+                        Button("キャンセル", role: .cancel) { }
+                    } message: {
+                        Text("「すべて」はカウント・チェック・行を初期化します。「行位置のみ」はカウントを保持してチェックと行を初期化します。「手書きメモ」は手書きメモを消去します。")
+                    }
                 }
-                Button("手書きメモ") {
-                    viewModel.clearDrawing()
-                }
-                Button("キャンセル", role: .cancel) { }
-            } message: {
-                Text("「すべて」はカウント・チェック・行を初期化します。「行位置のみ」はカウントを保持してチェックと行を初期化します。「手書きメモ」は手書きメモを消去します。")
             }
         }
 
