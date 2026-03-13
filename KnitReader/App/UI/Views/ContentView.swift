@@ -192,7 +192,7 @@ struct ContentView: View {
                     .monospacedDigit()
                     .accessibilityLabel("現在 \(viewModel.markers.count - viewModel.currentRowIndex) 行目、全 \(viewModel.markers.count) 行")
                 Text("\(viewModel.checkCount)")
-                    .font(.callout)
+                    .font(.title3)
                     .monospacedDigit()
                     .accessibilityLabel("チェック数 \(viewModel.checkCount)")
             }
