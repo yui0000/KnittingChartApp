@@ -199,8 +199,15 @@ struct ContentView: View {
         }
 
         ToolbarItemGroup(placement: .bottomBar) {
-            // 左側のダミー（右端の鉛筆＋リセットと幅を揃えて±を中央に見せる）
-            Color.clear.frame(width: 68)
+            // 手書きモードトグル
+            Button {
+                viewModel.isPencilMode.toggle()
+            } label: {
+                Image(systemName: "pencil.tip")
+                    .foregroundStyle(viewModel.isPencilMode ? Color.accentColor : Color.primary)
+            }
+            .disabled(isRowSettingsMode)
+            .accessibilityLabel(viewModel.isPencilMode ? "手書きモードをオフにする" : "手書きモードをオンにする")
 
             Spacer()
 
@@ -215,30 +222,18 @@ struct ContentView: View {
             .accessibilityLabel("カウントを減らす")
             .accessibilityHint("カウントを1減らします")
 
-            // + ボタン（行を進める）
-            Button {
-                viewModel.advanceRow()
-            } label: {
-                Image(systemName: "plus.circle.fill")
-                    .font(.title2)
-            }
-            .disabled(isRowSettingsMode)
-            .accessibilityLabel("次の行に進む")
-            .accessibilityHint("現在行をチェック済みにして次の行へ進みます")
-            .keyboardShortcut(.return, modifiers: [])
+             // + ボタン（行を進める）
+             Button {
+                 viewModel.advanceRow()
+             } label: {
+                 Image(systemName: "plus.circle.fill")
+                     .font(.title2)
+             }
+             .disabled(isRowSettingsMode)
+             .accessibilityLabel("次の行に進む")
+             .accessibilityHint("現在行をチェック済みにして次の行へ進みます")
 
             Spacer()
-
-            // 手書きモードトグル
-            Button {
-                viewModel.isPencilMode.toggle()
-            } label: {
-                Image(systemName: "pencil.tip")
-                    .foregroundStyle(viewModel.isPencilMode ? Color.accentColor : Color.primary)
-            }
-            .disabled(isRowSettingsMode)
-            .accessibilityLabel(viewModel.isPencilMode ? "手書きモードをオフにする" : "手書きモードをオンにする")
-            .keyboardShortcut("p", modifiers: .command)
 
             // 行・チェックリセット
             Button {
