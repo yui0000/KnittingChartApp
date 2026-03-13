@@ -238,15 +238,6 @@ struct ContentView: View {
             .accessibilityLabel(viewModel.isPencilMode ? "手書きモードをオフにする" : "手書きモードをオンにする")
             .keyboardShortcut("p", modifiers: .command)
 
-            // 手書きクリア
-            Button {
-                viewModel.clearDrawing()
-            } label: {
-                Image(systemName: "trash")
-            }
-            .disabled(viewModel.drawingData == nil || isRowSettingsMode)
-            .accessibilityLabel("手書きメモをクリア")
-
             // 行・チェックリセット
             Button {
                 showResetOptions = true
@@ -254,7 +245,7 @@ struct ContentView: View {
                 Image(systemName: "arrow.counterclockwise.circle")
             }
             .disabled(viewModel.markers.isEmpty || isRowSettingsMode)
-            .accessibilityLabel("行とチェックをリセット")
+            .accessibilityLabel("リセット")
             .confirmationDialog("リセットの種類を選択", isPresented: $showResetOptions, titleVisibility: .visible) {
                 Button("すべて", role: .destructive) {
                     viewModel.resetRowsAndChecks()
@@ -262,9 +253,12 @@ struct ContentView: View {
                 Button("行位置のみ") {
                     viewModel.resetRowsOnly()
                 }
+                Button("手書きメモ") {
+                    viewModel.clearDrawing()
+                }
                 Button("キャンセル", role: .cancel) { }
             } message: {
-                Text("「すべて」はカウント・チェック・行を初期化します。「行位置のみ」はカウントを保持してチェックと行を初期化します。")
+                Text("「すべて」はカウント・チェック・行を初期化します。「行位置のみ」はカウントを保持してチェックと行を初期化します。「手書きメモ」は手書きメモを消去します。")
             }
         }
 
