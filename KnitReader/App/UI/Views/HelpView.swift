@@ -10,8 +10,18 @@ struct HelpView: View {
                 Section("編み図を開く") {
                     HelpRow(
                         icon: "folder.badge.plus",
-                        title: "ファイルを開く",
-                        description: "右上のフォルダアイコンから画像（PNG / JPEG）または PDF を読み込みます。"
+                        title: "読み込み元を選択",
+                        description: "右上のフォルダアイコンをタップすると「ファイルから」「写真から」の選択肢が表示されます。"
+                    )
+                    HelpRow(
+                        icon: "doc.badge.plus",
+                        title: "ファイルから",
+                        description: "Files アプリから画像（PNG / JPEG / HEIC）または PDF を読み込みます。"
+                    )
+                    HelpRow(
+                        icon: "photo",
+                        title: "写真から",
+                        description: "写真ライブラリから画像を選択して読み込みます。"
                     )
                 }
 
