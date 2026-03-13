@@ -200,11 +200,7 @@ struct ContentView: View {
 
         ToolbarItemGroup(placement: .bottomBar) {
             // 左側のダミー（右端の鉛筆＋リセットと幅を揃えて±を中央に見せる）
-            HStack(spacing: 8) {
-                Image(systemName: "pencil.tip").font(.body)
-                Image(systemName: "arrow.counterclockwise.circle").font(.body)
-            }
-            .hidden()
+            Color.clear.frame(width: 68)
 
             Spacer()
 
